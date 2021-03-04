@@ -19,6 +19,10 @@
 				"Win64",
 				"Linux"
 			]
+		},
+		{
+			"Name": "Water",
+			"Enabled": true
 		}
 	]
 }
