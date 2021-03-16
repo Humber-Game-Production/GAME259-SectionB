@@ -63,10 +63,24 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
 
+	// Double Jump Mechanic
+	virtual void Landed(const FHitResult& Hit) override;
+
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	// Double Jump Mechanic
+	UFUNCTION()
+		void DoubleJump();
+
+	UPROPERTY()
+		int DoubleJumpCounter;
+
+	UPROPERTY()
+		float JumpHeight;
+
 };
 
