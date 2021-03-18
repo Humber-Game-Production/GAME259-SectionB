@@ -64,7 +64,7 @@ protected:
 	// End of APawn interface
 
 	// Double Jump Mechanic
-	virtual void Landed(const FHitResult& Hit) override;
+	/*virtual void Landed(const FHitResult& Hit) override;*/
 
 public:
 	/** Returns CameraBoom subobject **/
@@ -73,14 +73,14 @@ public:
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 	// Double Jump Mechanic
-	UFUNCTION()
-		void DoubleJump();
+	//UFUNCTION()
+	//	void DoubleJump();
 
-	UPROPERTY()
-		int DoubleJumpCounter;
+	//UPROPERTY()
+	//	int DoubleJumpCounter;
 
-	UPROPERTY()
-		float JumpHeight;
+	//UPROPERTY()
+	//	float JumpHeight;
 
 };
 

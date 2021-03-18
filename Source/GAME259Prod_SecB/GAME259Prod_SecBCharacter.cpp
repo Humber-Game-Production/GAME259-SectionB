@@ -46,8 +46,8 @@ AGAME259Prod_SecBCharacter::AGAME259Prod_SecBCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 
-	// Double Jump mechanic's jump height
-	JumpHeight = 600.f;
+	//// Double Jump mechanic's jump height
+	//JumpHeight = 600.f;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -57,8 +57,8 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AGAME259Prod_SecBCharacter::DoubleJump);
-	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	/*PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AGAME259Prod_SecBCharacter::DoubleJump);*/
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGAME259Prod_SecBCharacter::MoveForward);
@@ -81,20 +81,20 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 }
 
 // START OF DOUBLE JUMP MECHANIC
-void AGAME259Prod_SecBCharacter::Landed(const FHitResult& Hit)
-{
-	DoubleJumpCounter = 0;
-}
-
-void AGAME259Prod_SecBCharacter::DoubleJump()
-{
-	if (DoubleJumpCounter <= 1)
-	{
-		ACharacter::LaunchCharacter(FVector(0, 0, JumpHeight), false, true);
-		DoubleJumpCounter++;
-	}
-
-}
+//void AGAME259Prod_SecBCharacter::Landed(const FHitResult& Hit)
+//{
+//	DoubleJumpCounter = 0;
+//}
+//
+//void AGAME259Prod_SecBCharacter::DoubleJump()
+//{
+//	if (DoubleJumpCounter <= 1)
+//	{
+//		ACharacter::LaunchCharacter(FVector(0, 0, JumpHeight), false, true);
+//		DoubleJumpCounter++;
+//	}
+//
+//}
 // END OF DOUBLE JUMP MECHANIC
 
 void AGAME259Prod_SecBCharacter::OnResetVR()
