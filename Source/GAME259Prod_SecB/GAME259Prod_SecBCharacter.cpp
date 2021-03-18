@@ -57,8 +57,8 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AGAME259Prod_SecBCharacter::DoubleJump);
-	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AGAME259Prod_SecBCharacter::DoubleJump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGAME259Prod_SecBCharacter::MoveForward);
