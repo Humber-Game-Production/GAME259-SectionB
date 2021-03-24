@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Public/UEffect.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AGAME259Prod_SecBCharacter
@@ -48,6 +49,10 @@ AGAME259Prod_SecBCharacter::AGAME259Prod_SecBCharacter()
 
 	// Double Jump mechanic's jump height
 	JumpHeight = 600.f;
+
+	//Set attackMulti and defenseMulti
+	attackMulti = 1.0f;
+	defenseMulti = 1.0f;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -71,19 +76,22 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 	PlayerInputComponent->BindAxis("TurnRate", this, &AGAME259Prod_SecBCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AGAME259Prod_SecBCharacter::LookUpAtRate);
-
-	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AGAME259Prod_SecBCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AGAME259Prod_SecBCharacter::TouchStopped);
-
-	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AGAME259Prod_SecBCharacter::OnResetVR);
 }
 
 // START OF DOUBLE JUMP MECHANIC
 void AGAME259Prod_SecBCharacter::Landed(const FHitResult& Hit)
 {
 	DoubleJumpCounter = 0;
+}
+
+void AGAME259Prod_SecBCharacter::AddEffect(UEffect* eff)
+{
+	currentEffects.Add(eff);
+}
+
+void AGAME259Prod_SecBCharacter::DestroyEffect(UEffect* eff)
+{
+	currentEffects.Remove(eff);
 }
 
 void AGAME259Prod_SecBCharacter::DoubleJump()
@@ -96,27 +104,6 @@ void AGAME259Prod_SecBCharacter::DoubleJump()
 
 }
 // END OF DOUBLE JUMP MECHANIC
-
-void AGAME259Prod_SecBCharacter::OnResetVR()
-{
-	// If GAME259Prod_SecB is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in GAME259Prod_SecB.Build.cs is not automatically propagated
-	// and a linker error will result.
-	// You will need to either:
-	//		Add "HeadMountedDisplay" to [YourProject].Build.cs PublicDependencyModuleNames in order to build successfully (appropriate if supporting VR).
-	// or:
-	//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
-	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
-}
-
-void AGAME259Prod_SecBCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		Jump();
-}
-
-void AGAME259Prod_SecBCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		StopJumping();
-}
 
 void AGAME259Prod_SecBCharacter::TurnAtRate(float Rate)
 {
