@@ -3,8 +3,7 @@
 
 UEffect::UEffect()
 {
-	isTimed = true;
-	duration = 5.0f;
+
 }
 
 UEffect::~UEffect()
@@ -12,7 +11,7 @@ UEffect::~UEffect()
 
 }
 
-void UEffect::Start() {
+void UEffect::Start(bool isTimed, float duration) {
 
 	Apply();
 
@@ -26,3 +25,11 @@ void UEffect::Apply() {
 
 void UEffect::Remove() {
 }
+
+void UEffect::SetupImage(UHorizontalBox* widget_)
+{
+	UImage* image = NewObject<UImage>(UImage::StaticClass());
+	widget_->AddChildToHorizontalBox(image);
+}
+
+

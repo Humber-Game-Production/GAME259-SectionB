@@ -94,6 +94,8 @@ void AGAME259Prod_SecBCharacter::DestroyEffect(UEffect* eff)
 	currentEffects.Remove(eff);
 }
 
+
+
 void AGAME259Prod_SecBCharacter::DoubleJump()
 {
 	if (DoubleJumpCounter <= 1)

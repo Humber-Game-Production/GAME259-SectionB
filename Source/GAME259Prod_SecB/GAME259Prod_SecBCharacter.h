@@ -87,10 +87,12 @@ public:
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
+
+	/** Add effect to character. **/
 	UFUNCTION(BlueprintCallable, Category = "Effect")
 		void AddEffect(UEffect* eff);
 
-	
+	/** Remove effect from character. **/
 	void DestroyEffect(UEffect* eff);
 
 	// Double Jump Mechanic
