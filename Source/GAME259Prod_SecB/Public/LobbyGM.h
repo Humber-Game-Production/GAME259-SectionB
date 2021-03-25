@@ -6,11 +6,13 @@
 #include "GameFramework/GameModeBase.h"
 #include "GameFramework/PlayerController.h"
 #include "AdvancedSessionsLibrary.h"
+#include "S_PlayerInfo.h"
+#include "BPI_LobbyGM.h"
 #include "LobbyGM.generated.h"
 
 class UTexture2D;
 UCLASS()
-class GAME259PROD_SECB_API ALobbyGM : public AGameModeBase
+class GAME259PROD_SECB_API ALobbyGM : public AGameModeBase, public IBPI_LobbyGM
 {
 	GENERATED_BODY()
 
@@ -20,7 +22,9 @@ public:
 
 	TArray<APlayerController*> ConnectedPlayers;
 
-	TArray<FSessionPropertyKeyPair> Settings;
+	TArray<FSessionPropertyKeyPair*> Settings;
+
+	TArray<FS_PlayerInfo> ConnectedPlayerInfos;
 
 	FText ServerName;
 
@@ -48,7 +52,7 @@ public:
 	
 	virtual void PostLogin(APlayerController* newPlayer) override;
 
-	virtual void Logout(APlayerController* exitingController);
+	virtual void Logout(AController* exitingController);
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -72,6 +76,9 @@ public:
 
 	UFUNCTION(Server, Reliable,BlueprintCallable)
 	void UpdateInLobby(bool InLobby);
+
+
+	ALobbyGM* GetLobbyGMRef_Implementation() override;
 
 private:
 

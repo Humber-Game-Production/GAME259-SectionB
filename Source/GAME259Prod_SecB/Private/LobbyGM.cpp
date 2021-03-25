@@ -10,6 +10,7 @@
 ALobbyGM::ALobbyGM()
 {
 	// SET THE SERVER NAME AND MAX PLAYERS FROM THE STEAMGAMEINSTANCE AFTER ITS CONVERTED TO C++
+
 }
 
 ALobbyGM::~ALobbyGM()
@@ -32,10 +33,10 @@ void ALobbyGM::PostLogin(APlayerController* newPlayer)
 	
 }
 
-void ALobbyGM::Logout(APlayerController* exitingController)
+void ALobbyGM::Logout(AController* exitingController)
 {
 	int32 arrayIndex = 0;
-	for each (auto player in ConnectedPlayers)
+	for(auto player : ConnectedPlayers)
 	{
 		if (player == exitingController) {
 			break;
@@ -46,7 +47,7 @@ void ALobbyGM::Logout(APlayerController* exitingController)
 	ConnectedPlayers.RemoveAt(arrayIndex);
 	
 	// REMOVE PLAYERS INFO ALSO
-
+	ConnectedPlayerInfos.RemoveAt(arrayIndex);
 
 	EveryoneUpdate();
 }
@@ -59,7 +60,7 @@ void ALobbyGM::HostUpdateGameSettings(UTexture2D* SelectedMapImage_, FText& Sele
 	SelectedMapTime = SelectedMapTime_;
 	SelectedMapID = SelectedMapID_;
 
-	for each (auto player in ConnectedPlayers)
+	for (auto player : ConnectedPlayers)
 	{
 		// GET LOBBY PC REF AND CALL UPDATE LOBBY SETTINGS
 	}
@@ -69,7 +70,7 @@ void ALobbyGM::HostUpdateGameSettings(UTexture2D* SelectedMapImage_, FText& Sele
 void ALobbyGM::PlayerKicked(const int PlayerID)
 {
 	// GET LOBBY PC REF THEN CALL THE KICKED FUNCTION
-	ConnectedPlayers.FindByKey(PlayerID);
+	//ConnectedPlayers.FindByKey(PlayerID);
 
 }
 
@@ -81,14 +82,13 @@ void ALobbyGM::EveryoneUpdate()
 
 	if (CurrentPlayers > 0)
 	{
-		// CLEAR CONNECTED PLAYERS INFO
-
-		for each (auto player in ConnectedPlayers)
+		ConnectedPlayerInfos.Empty();
+		for (auto player : ConnectedPlayers)
 		{
 			// GET LOBBY PC REF AND ADD EACH PLAYER SETTINGS TO THE CONNECTED PLAYERS INFO TARRAY AND THEN CALL THE UPDATE NUMBER OF PLAYERS THROUGH LOBBY PC REF FUNCTION
 		}
 
-		for each (auto player in ConnectedPlayers)
+		for (auto player : ConnectedPlayers)
 		{
 			// GET LOBBY PC REF AND CALL THE ADD PLAYER INFO FUNCTION
 
@@ -107,7 +107,7 @@ void ALobbyGM::AddToKickList()
 
 void ALobbyGM::StartLoadingScreen()
 {
-	for each (auto player in ConnectedPlayers)
+	for (auto player: ConnectedPlayers)
 	{
 		// GET LOBBY PC REF AND CALL SHOW LOADING SCREEN
 
@@ -129,6 +129,8 @@ void ALobbyGM::UpdateInLobby_Implementation(bool InLobby)
 	// GET STEAM GAME INSTANCE REF AND CALL THE TOGGLE IN LOBBY FUNCTION
 
 }
+
+
 
 void ALobbyGM::LaunchGame()
 {
@@ -165,4 +167,8 @@ void ALobbyGM::LaunchUniqueGame(const int ID)
 	default:
 		break;
 	}
+}
+ALobbyGM* ALobbyGM::GetLobbyGMRef_Implementation() 
+{
+	return this;
 }
