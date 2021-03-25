@@ -8,6 +8,8 @@ public class GAME259Prod_SecB : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "AdvancedSessions", "AdvancedSteamSessions" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG", "AdvancedSessions", "AdvancedSteamSessions" });
+
+
 	}
 }
