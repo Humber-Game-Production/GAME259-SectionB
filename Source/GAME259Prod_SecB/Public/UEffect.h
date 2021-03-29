@@ -41,6 +41,8 @@ protected:
 
 	/** The image accociated with the effect*/
 	//UImage img;
+
+	UHorizontalBox* widget;
 	
 
 private:
