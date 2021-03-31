@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/Object.h"
-#include "Components/Image.h"
 #include "Components/HorizontalBox.h"
+#include "UEffectWidget.h"
 #include "UEffect.generated.h"
 
 /**
@@ -35,14 +35,12 @@ public:
 
 	/** Use to add iamge to widget **/
 	UFUNCTION(BlueprintCallable, Category = "Init")
-	void SetupImage(UHorizontalBox* widget_);
+	void SetupImage(UHorizontalBox* widget_, TSoftObjectPtr<UTexture2D> icon);
 
 protected:
 
 	/** The image accociated with the effect*/
 	//UImage img;
-
-	UHorizontalBox* widget;
 	
 
 private:
