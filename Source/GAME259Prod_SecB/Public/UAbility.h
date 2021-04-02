@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Class.h"
+#include "UObject/Object.h"
 #include "UAbility.generated.h"
 
 /**
@@ -17,7 +17,7 @@ enum class Type : uint8 {
 };
 
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UAbility : public UClass
+class GAME259PROD_SECB_API UAbility : public UObject
 {
 	GENERATED_BODY()
 public:
