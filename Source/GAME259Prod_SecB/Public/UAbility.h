@@ -29,8 +29,8 @@ public:
 
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-	float value;
+	float floatValue;
 
-	UFUNCTION(BlueprintCallable, Category = Status)
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = Status)
 	virtual void Activate();
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Public/UAbility.h"
 #include "GAME259Prod_SecBCharacter.generated.h"
 
 class UEffect;
@@ -51,6 +52,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
 	float speedMulti;
 
+	/** Used to change player speed. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
+	UAbility* offensiveAbility;
+
+	/** Used to change player speed. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
+	UAbility* defensiveAbility;
 
 
 protected:

@@ -20,4 +20,8 @@ public:
 
 
 virtual void Activate() override;
+
+private:
+	//Weapons range.
+	float range;
 };
