@@ -41,8 +41,10 @@ void URocketAbility::Activate()
 
 
     trans.SetLocation(playerForward * 100 + startLoc);
+    FActorSpawnParameters spawnPara;
+    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     //Spawn Rocket Here.
-    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans);
+    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara);
     
 	
 }

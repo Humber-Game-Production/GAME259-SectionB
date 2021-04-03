@@ -11,7 +11,14 @@ UAbility::~UAbility()
 {
 }
 
-void UAbility::Activate_Implementation()
+void UAbility::Activate()
 {
-
 }
+
+void UAbility::Calling_Implementation() {
+	Activate();
+}
+//{
+//	Activate();
+//}
+
