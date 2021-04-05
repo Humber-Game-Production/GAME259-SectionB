@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "GAME259Prod_SecBCharacter.generated.h"
 
+class UEffect;
+
 UCLASS(config=Game)
 class AGAME259Prod_SecBCharacter : public ACharacter
 {
@@ -29,10 +31,29 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-protected:
+	/** Player Health value. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stats)
+	TArray<UEffect*> currentEffects;
 
-	/** Resets HMD orientation in VR. */
-	void OnResetVR();
+	/** Player Health value. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
+	float health;
+
+	/** Used to increase player damage. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
+	float attackMulti;
+
+	/** Used to reduce damage player takes. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
+	float defenseMulti; 
+
+	/** Used to change player speed. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
+	float speedMulti;
+
+
+
+protected:
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -52,12 +73,6 @@ protected:
 	 */
 	void LookUpAtRate(float Rate);
 
-	/** Handler for when a touch input begins. */
-	void TouchStarted(ETouchIndex::Type FingerIndex, FVector Location);
-
-	/** Handler for when a touch input stops. */
-	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
-
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -71,6 +86,14 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+
+	/** Add effect to character. **/
+	UFUNCTION(BlueprintCallable, Category = "Effect")
+		void AddEffect(UEffect* eff);
+
+	/** Remove effect from character. **/
+	void DestroyEffect(UEffect* eff);
 
 	// Double Jump Mechanic
 	//UFUNCTION()
