@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/Image.h"
-#include "UEffectWidget.generated.h"
+#include "EffectWidget.generated.h"
 
 /**
  * 

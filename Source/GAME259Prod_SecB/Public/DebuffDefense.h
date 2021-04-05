@@ -3,19 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UEffect.h"
-#include "UDebuff_Speed.generated.h"
+#include "Effect.h"
+#include "DebuffDefense.generated.h"
 
 /**
  * 
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UDebuff_Speed : public UEffect
+class GAME259PROD_SECB_API UDebuffDefense : public UEffect
 {
 	GENERATED_BODY()
 public:
-	UDebuff_Speed();
-	~UDebuff_Speed();
+	UDebuffDefense();
+	~UDebuffDefense();
 
 	virtual void Remove() override;
 

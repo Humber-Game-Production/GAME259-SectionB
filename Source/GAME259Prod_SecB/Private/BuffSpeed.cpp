@@ -1,25 +1,23 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "UDebuff_Speed.h"
+#include "BuffSpeed.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-UDebuff_Speed::UDebuff_Speed()
+UBuffSpeed::UBuffSpeed()
 {
-
 }
 
-UDebuff_Speed::~UDebuff_Speed()
+UBuffSpeed::~UBuffSpeed()
 {
-
 }
 
-void UDebuff_Speed::Apply() {
+void UBuffSpeed::Apply()
+{
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->speedMulti -= 1.0f;
 }
-
-void UDebuff_Speed::Remove() {
+void UBuffSpeed::Remove()
+{
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->speedMulti += 1.0f;
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->DestroyEffect(this);
 }
 

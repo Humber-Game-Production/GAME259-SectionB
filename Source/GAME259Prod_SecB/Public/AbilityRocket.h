@@ -3,20 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UAbility.h"
-#include "RocketAbility.generated.h"
+#include "Ability.h"
+#include "AbilityRocket.generated.h"
 
 /**
  * 
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API URocketAbility : public UAbility
+class GAME259PROD_SECB_API UAbilityRocket : public UAbility
 {
 	GENERATED_BODY()
 
 public:
-	URocketAbility(const FObjectInitializer& ObjectInitializer);
-	~URocketAbility();
+	UAbilityRocket(const FObjectInitializer& ObjectInitializer);
+	~UAbilityRocket();
 
 
 virtual void Activate() override;

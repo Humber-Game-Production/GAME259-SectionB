@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "UAbility.generated.h"
+#include "Ability.generated.h"
 
 /**
  * 
@@ -25,7 +25,7 @@ public:
 	~UAbility();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-	TEnumAsByte<Type> type;
+	Type type;
 
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)

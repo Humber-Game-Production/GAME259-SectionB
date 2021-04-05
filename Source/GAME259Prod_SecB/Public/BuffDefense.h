@@ -3,20 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UEffect.h"
-#include "UBuff_Defense.generated.h"
+#include "Effect.h"
+#include "BuffDefense.generated.h"
 
 
 /**
  * Buff player defense
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UBuff_Defense : public UEffect
+class GAME259PROD_SECB_API UBuffDefense : public UEffect
 {
 	GENERATED_BODY()
 public:
-	UBuff_Defense();
-	~UBuff_Defense();
+	UBuffDefense();
+	~UBuffDefense();
 
 	virtual void Remove() override;
 

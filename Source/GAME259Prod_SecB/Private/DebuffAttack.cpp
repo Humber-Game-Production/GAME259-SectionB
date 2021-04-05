@@ -1,22 +1,21 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "UDebuff_Attack.h"
+#include "DebuffAttack.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-UDebuff_Attack::UDebuff_Attack()
+UDebuffAttack::UDebuffAttack()
 {
 }
 
-UDebuff_Attack::~UDebuff_Attack()
+UDebuffAttack::~UDebuffAttack()
 {
 }
 
-void UDebuff_Attack::Apply() {
+void UDebuffAttack::Apply() {
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->attackMulti -= 1.0f;
 }
 
-void UDebuff_Attack::Remove() {
+void UDebuffAttack::Remove() {
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->attackMulti += 1.0f;
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->DestroyEffect(this);
 }

@@ -1,23 +1,23 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RocketAbility.h"
+#include "AbilityRocket.h"
 #include "Kismet/GameplayStatics.h"
 #include "Rocket.h"
 
 
 
-URocketAbility::URocketAbility(const FObjectInitializer& ObjectInitializer) {
+UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 	type = Type::OFFENSIVE;
     range = 2.0f;
 
 }
 
-URocketAbility::~URocketAbility() {
+UAbilityRocket::~UAbilityRocket() {
 
 }
 
-void URocketAbility::Activate()
+void UAbilityRocket::Activate()
 {
     FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true);
     RV_TraceParams.bTraceComplex = true;

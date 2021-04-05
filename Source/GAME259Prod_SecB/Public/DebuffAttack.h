@@ -3,24 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UEffect.h"
-#include "UBuff_Attack.generated.h"
-
+#include "Effect.h"
+#include "DebuffAttack.generated.h"
 
 /**
- * Buff player attack
+ * 
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UBuff_Attack : public UEffect
+class GAME259PROD_SECB_API UDebuffAttack : public UEffect
 {
 	GENERATED_BODY()
 public:
-	UBuff_Attack();
-	~UBuff_Attack();
+	UDebuffAttack();
+	~UDebuffAttack();
 
 	virtual void Remove() override;
 
 private:
-	virtual void Apply() override;
 
+	virtual void Apply() override;
 };

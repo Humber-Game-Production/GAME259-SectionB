@@ -3,11 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Kismet/GameplayStatics.h"
 #include "UObject/Object.h"
-#include "Components/HorizontalBox.h"
-#include "UEffectWidget.h"
-#include "UEffect.generated.h"
+#include "Kismet/GameplayStatics.h"
+#include "Components/Image.h"
+#include "Effect.generated.h"
 
 /**
  *  Base class for temporary player effects.
@@ -33,18 +32,18 @@ public:
 	UFUNCTION()
 	virtual void Remove();
 
-	/** Use to add iamge to widget **/
-	UFUNCTION(BlueprintCallable, Category = "Init")
-	void SetupImage(UHorizontalBox* widget_, TSoftObjectPtr<UTexture2D> icon);
-
 protected:
 
 	/** The image accociated with the effect*/
-	//UImage img;
-	
+	UImage* effectIcon;
 
+	/** File path for the image*/
+	FString imagePath;
+
+	
 private:
 
+	UFUNCTION()
 	virtual void Apply();
 
 	FTimerHandle Timer;

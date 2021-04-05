@@ -3,23 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UEffect.h"
-#include "UBuff_Speed.generated.h"
+#include "Effect.h"
+#include "BuffAttack.generated.h"
+
 
 /**
- * Buff player speed
+ * Buff player attack
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UBuff_Speed : public UEffect
+class GAME259PROD_SECB_API UBuffAttack : public UEffect
 {
 	GENERATED_BODY()
 public:
-	UBuff_Speed();
-	~UBuff_Speed();
+	UBuffAttack();
+	~UBuffAttack();
 
 	virtual void Remove() override;
 
 private:
-
 	virtual void Apply() override;
+
 };
