@@ -24,12 +24,23 @@ void UEffect::Apply() {
 }
 
 void UEffect::Remove() {
+	
 }
 
-void UEffect::SetupImage(UHorizontalBox* widget_)
+void UEffect::SetupImage(UHorizontalBox* widget_,TSoftObjectPtr<UTexture2D> icon)
 {
-	UImage* image = NewObject<UImage>(UImage::StaticClass());
-	widget_->AddChildToHorizontalBox(image);
+	FSlateBrush imageBrush{};
+	imageBrush.ImageSize = FVector2D{ 6.0f,6.0f };
+	imageBrush.SetResourceObject(icon.LoadSynchronous());
+	UImage* win = NewObject<UImage>();
+
+	win->SetBrush(imageBrush);
+	
+	//UTexture2D texture;
+	//static ConstructorHelpers::FObjectFinder<UTexture2D> texture(TEXT("/Content/StarterContent/Textures/T_Brick_Clay_Beveled_D.uasset"));
+	//image->SetBrushFromTexture(&texture);
+	widget_->AddChildToHorizontalBox(win);
+	//widget = widget_;
 }
 
 
