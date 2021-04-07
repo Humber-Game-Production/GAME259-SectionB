@@ -19,11 +19,18 @@ void UAbilityShield::Activate()
 	//Internal cool down.
 	if (Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded == false) {
 		//Turn shield on
-		Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded = true;
+		//Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded = true;
 
 		//Spawn Shield static mesh
-		NewObject<UShield>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Shield")); //Bounds->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
-		//Get the mesh
+
+
+		//TODO: Need to fix this, the shield is not showing up.
+		UShield* NewComponent = NewObject<UShield>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), UShield::StaticClass(), "Shield");
+		check(NewComponent);
+
+		NewComponent->RegisterComponent();
+																													//shield->SetupAttachment(UGameplayStatics::GetPlayerController(GetWorld(), 0)->, "hm");
+																																																		//Get the mesh
 		//static ConstructorHelpers::FObjectFinder<UStaticMeshComponent> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
 		//ShieldMesh->SetStaticMesh(mesh.Object);
 		//ShieldMesh->SetupAttachment(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)), "Shield");

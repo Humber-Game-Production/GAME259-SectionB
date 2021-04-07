@@ -16,6 +16,7 @@ class GAME259PROD_SECB_API UShield : public UStaticMeshComponent
 
 public:
 
+	UShield();
 	UShield(const FObjectInitializer& ObjectInitializer);
 	~UShield();
 
@@ -30,9 +31,7 @@ public:
 
 	//Use to disable the shield and make the player vulerable again.
 	UFUNCTION(BlueprintCallable)
-	void EndShield();
-
-
+		void EndShield();
 private:
 	
 	

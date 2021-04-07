@@ -54,6 +54,10 @@ AGAME259Prod_SecBCharacter::AGAME259Prod_SecBCharacter()
 	attackMulti = 1.0f;
 	defenseMulti = 1.0f;
 	speedMulti = 1.0f;
+
+	isShielded = false;
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////

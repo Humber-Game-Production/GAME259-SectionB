@@ -5,10 +5,18 @@
 #include "Kismet/GameplayStatics.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
+UShield::UShield() {
+	//_rootComponent = NewObject<UStaticMeshComponent>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	//check(_rootComponent);
+	//_rootComponent->RegisterComponent();
+
+}
+
 UShield::UShield(const FObjectInitializer& ObjectInitializer) {
 //Create Shield here.
 
-
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
+	SetStaticMesh(mesh.Object);
 }
 
 UShield::~UShield() {
@@ -18,10 +26,9 @@ UShield::~UShield() {
 void UShield::BeginPlay_Implementation()
 {
 	Super::BeginPlay();
-
 	//Set timer.
-	FTimerHandle Timing;
-	GetWorld()->GetTimerManager().SetTimer(Timing, this, &UShield::EndShield, 3.0f, false);
+	//FTimerHandle Timing;
+	//GetWorld()->GetTimerManager().SetTimer(Timing, this, &UShield::EndShield, 3.0f, false);
 }
 
 void UShield::Damage(float value) {

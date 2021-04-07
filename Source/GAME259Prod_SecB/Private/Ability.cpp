@@ -5,6 +5,8 @@
 
 UAbility::UAbility()
 {
+	//icon = Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
+
 }
 
 UAbility::~UAbility()

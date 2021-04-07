@@ -101,6 +101,8 @@ public:
 	/** Returns effectBox **/
 	FORCEINLINE class UHorizontalBox* GetEffectBox() const { return effectBox; }
 
+
+
 	// Double Jump Mechanic
 	//UFUNCTION()
 	//	void DoubleJump();

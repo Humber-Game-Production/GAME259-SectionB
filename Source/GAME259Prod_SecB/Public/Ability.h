@@ -31,10 +31,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 	float floatValue;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+	FString imagePath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+	UTexture2D* icon;
+
 	//Nested Multicast Function
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = Status)
 	void Calling();
 
 	UFUNCTION(Category = Status)
 	virtual void Activate();
+
+
+
+
 };

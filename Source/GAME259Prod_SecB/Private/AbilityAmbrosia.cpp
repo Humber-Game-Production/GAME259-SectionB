@@ -15,6 +15,8 @@ UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	debuffTime = 2.0f;
 
 	type = Type::DEFENSIVE;
+
+	//Set image path
 }
 
 UAbilityAmbrosia::~UAbilityAmbrosia()
