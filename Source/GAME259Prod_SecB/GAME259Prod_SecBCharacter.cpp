@@ -8,7 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "Public/UEffect.h"
+#include "Public/Effect.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AGAME259Prod_SecBCharacter
@@ -50,9 +50,14 @@ AGAME259Prod_SecBCharacter::AGAME259Prod_SecBCharacter()
 	// Double Jump mechanic's jump height
 	//JumpHeight = 600.f;
 
-	//Set attackMulti and defenseMulti
+	//Set attackMulti, defenseMulti and speed
 	attackMulti = 1.0f;
 	defenseMulti = 1.0f;
+	speedMulti = 1.0f;
+
+	isShielded = false;
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -83,18 +88,6 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 //{
 //	DoubleJumpCounter = 0;
 //}
-
-void AGAME259Prod_SecBCharacter::AddEffect(UEffect* eff)
-{
-	currentEffects.Add(eff);
-}
-
-void AGAME259Prod_SecBCharacter::DestroyEffect(UEffect* eff)
-{
-	currentEffects.Remove(eff);
-}
-
-
 
 //void AGAME259Prod_SecBCharacter::DoubleJump()
 //{

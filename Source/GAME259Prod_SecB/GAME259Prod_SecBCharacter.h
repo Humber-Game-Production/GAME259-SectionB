@@ -4,9 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Public/Ability.h"
+#include "Components/HorizontalBox.h"
 #include "GAME259Prod_SecBCharacter.generated.h"
 
-class UEffect;
 
 UCLASS(config=Game)
 class AGAME259Prod_SecBCharacter : public ACharacter
@@ -32,10 +33,6 @@ public:
 	float BaseLookUpRate;
 
 	/** Player Health value. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stats)
-	TArray<UEffect*> currentEffects;
-
-	/** Player Health value. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
 	float health;
 
@@ -51,6 +48,17 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
 	float speedMulti;
 
+	/** Indicates player is protected. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
+	bool isShielded;
+
+	/** Used to change player speed. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
+	UAbility* offensiveAbility;
+
+	/** Used to change player speed. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
+	UAbility* defensiveAbility;
 
 
 protected:
@@ -73,6 +81,10 @@ protected:
 	 */
 	void LookUpAtRate(float Rate);
 
+	//Reference to HUD Widget for Effectss
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = WidgetRef)
+	UHorizontalBox* effectBox;
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -86,14 +98,10 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	/** Returns effectBox **/
+	FORCEINLINE class UHorizontalBox* GetEffectBox() const { return effectBox; }
 
 
-	/** Add effect to character. **/
-	UFUNCTION(BlueprintCallable, Category = "Effect")
-		void AddEffect(UEffect* eff);
-
-	/** Remove effect from character. **/
-	void DestroyEffect(UEffect* eff);
 
 	// Double Jump Mechanic
 	//UFUNCTION()
