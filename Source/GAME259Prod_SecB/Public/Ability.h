@@ -45,6 +45,4 @@ public:
 	virtual void Activate();
 
 
-
-
 };
