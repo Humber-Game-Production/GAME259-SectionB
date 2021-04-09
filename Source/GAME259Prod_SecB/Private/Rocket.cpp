@@ -26,8 +26,6 @@ ARocket::ARocket()
 	Bounds->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel1, ECollisionResponse::ECR_Ignore);
 	Bounds->SetVisibility(true);
 
-
-	
 	//Add Static Mesh Here
 	UStaticMeshComponent* WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere")); //Bounds->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
 	//static UStaticMeshComponent* WeaponMesh = FObjectInitializer::CreateDefaultSubobject<UStaticMeshComponent>(Bounds, TEXT("Sphere"));
@@ -39,9 +37,6 @@ ARocket::ARocket()
 	WeaponMesh->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel1);
 	WeaponMesh->SetupAttachment(Bounds,"hm");
 	//Bounds->SetupAttachment(WeaponMesh);
-
-
-	
 
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComp"));
