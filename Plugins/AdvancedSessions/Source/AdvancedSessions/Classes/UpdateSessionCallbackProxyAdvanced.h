@@ -6,8 +6,8 @@
 #include "BlueprintDataDefinitions.h"
 #include "UpdateSessionCallbackProxyAdvanced.generated.h"
 
-UCLASS(MinimalAPI)
-class UUpdateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
+UCLASS()
+class ADVANCEDSESSIONS_API UUpdateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
 {
 	GENERATED_UCLASS_BODY()
 
