@@ -24,7 +24,11 @@ protected:
 private:
 	float damage;
 
-public:	
+public:
+
+	UFUNCTION()
+	void Initalize(float damage_); //Used to initalize the object.
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -37,7 +41,7 @@ public:
 	class USphereComponent* Bounds;
 
 	UFUNCTION()
-	void OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 
 };

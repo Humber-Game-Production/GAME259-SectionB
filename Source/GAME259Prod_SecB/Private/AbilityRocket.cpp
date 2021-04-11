@@ -11,6 +11,8 @@ UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 	type = Type::OFFENSIVE;
     range = 2.0f;
 
+    floatValue = 30.0f;
+
 }
 
 UAbilityRocket::~UAbilityRocket() {
@@ -44,7 +46,5 @@ void UAbilityRocket::Activate()
     FActorSpawnParameters spawnPara;
     spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     //Spawn Rocket Here.
-    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara);
-    
-	
+    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue);
 }
