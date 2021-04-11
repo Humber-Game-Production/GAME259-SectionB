@@ -5,6 +5,11 @@
 #include "CoreMinimal.h"
 #include "BPI_GameInstance.h"
 
+#include "W_MainMenu.h"
+#include "W_LoadingScreen.h"
+#include "W_ErrorWindow.h"
+
+
 #include "AdvancedFriendsGameInstance.h"
 #include "AdvancedSessionsLibrary.h"
 #include "CreateSessionCallbackProxyAdvanced.h"
@@ -39,6 +44,18 @@ public:
 	 UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Server Config")
 		TArray<FSessionPropertyKeyPair> ServerSettings;
 	
+	 UPROPERTY(BlueprintReadWrite, Category = "Widgets")
+		 UW_MainMenu*  MainMenu;
+
+	 UPROPERTY(BlueprintReadWrite, Category = "Widgets")
+		 class UW_HostMenu* HostMenu;
+
+	 UPROPERTY(BlueprintReadWrite, Category = "Widgets")
+		  UW_LoadingScreen* LoadingScreen;
+
+	 UPROPERTY(BlueprintReadWrite, Category = "Widgets")
+		 UW_ErrorWindow* ErrorWindow;
+
 	// Store's the max players in the server 
 	UPROPERTY(BlueprintReadOnly, Category = "Server Config")
 		int32  MaxPlayers;
@@ -89,7 +106,7 @@ public:
 		FString NetErrorToString(ENetworkFailure::Type FailureType);
 
 	UFUNCTION(BlueprintCallable, Category = "Error Functions")
-		FString TravelErrorToString(ENetworkFailure::Type FailureType);
+		FString TravelErrorToString(ETravelFailure::Type FailureType);
 
 	
 
@@ -110,10 +127,13 @@ public:
 	USteamGameInstance* SteamGameInstanceRef_Implementation() override;
 
 	//Set's the player's info to the playerinfo passed in the parameters 
-	void SavePlayerInfo_Implementation(FS_PlayerInfo& PlayerInfo_) override;
+	void SavePlayerInfo_Implementation(FS_PlayerInfo PlayerInfo_) override;
 
 	//Returns the players info
 	FS_PlayerInfo GetPlayerInfo_Implementation() override;
+
+
+
 
 	/*INTERFACE FUNCTIONS*/
 };

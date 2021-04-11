@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SteamGameInstance.h"
+#include "W_HostMenu.h"
 
 void USteamGameInstance::LaunchLobby_Implementation(int32  NumberOfPlayers_, bool EnableLan_, const FText& ServerName_, const FString& GameID_, bool InLobby_) 
 {
@@ -108,7 +109,7 @@ FString USteamGameInstance::NetErrorToString(ENetworkFailure::Type FailureType)
 	return ErrorString;
 }
 
-FString USteamGameInstance::TravelErrorToString(ENetworkFailure::Type FailureType)
+FString USteamGameInstance::TravelErrorToString(ETravelFailure::Type FailureType)
 {
 	FString ErrorString;
 
@@ -140,7 +141,7 @@ USteamGameInstance* USteamGameInstance::SteamGameInstanceRef_Implementation()
 	return this;
 }
 
-void USteamGameInstance::SavePlayerInfo_Implementation(FS_PlayerInfo& PlayerInfo_)
+void USteamGameInstance::SavePlayerInfo_Implementation(FS_PlayerInfo PlayerInfo_)
 {
 	PlayerInfo = PlayerInfo_;
 }
