@@ -25,7 +25,8 @@ void UAbilityShield::Activate()
 		UShield* NewComponent = NewObject<UShield>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), UShield::StaticClass(), "Shield");
 		check(NewComponent);
 
-		NewComponent->AttachTo(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh()->GetAttachParent(), "Shield");
+		FAttachmentTransformRules rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, false);
+		NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh()->GetAttachParent(), rules, "Shield");
 
 		NewComponent->RegisterComponent();
 

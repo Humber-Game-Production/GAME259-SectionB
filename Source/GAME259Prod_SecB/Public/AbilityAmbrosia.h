@@ -24,5 +24,6 @@ private:
 
 	void ApplyDebuff();
 
+	float buffTime;
 	float debuffTime;
 };
