@@ -44,6 +44,7 @@ protected:
 
 public:
 
+
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 		UButton* AcceptButton;
 
