@@ -21,3 +21,4 @@ void UDebuffDefense::Remove() {
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(1.0f);
 }
 
+
