@@ -9,7 +9,7 @@
 
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE()
 class UBPI_GameInstance : public UInterface
 {
 	GENERATED_BODY()
@@ -56,7 +56,7 @@ public:
 		class USteamGameInstance* SteamGameInstanceRef();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interface")
-		void SavePlayerInfo(FS_PlayerInfo PlayerInfo_);
+		void SavePlayerInfo(FS_PlayerInfo& PlayerInfo_);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interface")
 		FS_PlayerInfo GetPlayerInfo();
