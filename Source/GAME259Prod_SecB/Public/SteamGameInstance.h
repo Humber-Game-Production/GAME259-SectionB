@@ -42,7 +42,7 @@ public:
 		FBlueprintSessionResult CurrentSession;
 
 	//Store's the ServerSettings that are being used
-	 UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Server Config")
+	 UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Server Config")
 		TArray<FSessionPropertyKeyPair> ServerSettings;
 	
 	 UPROPERTY(BlueprintReadWrite, Category = "Widgets")
