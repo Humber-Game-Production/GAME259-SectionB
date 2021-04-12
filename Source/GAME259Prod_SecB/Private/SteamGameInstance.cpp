@@ -29,6 +29,11 @@ void USteamGameInstance::LaunchLobby_Implementation(int32  NumberOfPlayers_, boo
 
 
 
+void USteamGameInstance::Init()
+{
+
+}
+
 void USteamGameInstance::SetLobbySettings(int32  MaxPlayers_, FText ServerName_, FString GameID_, bool EnableLan_, bool InLobby_, int32  NumPlayers_, FText MapName_)
 {
 	MaxPlayers = MaxPlayers_;
@@ -117,10 +122,61 @@ FString USteamGameInstance::TravelErrorToString(ETravelFailure::Type FailureType
 	return ErrorString.Append(StaticEnum<ENetworkFailure::Type>()->GetNameStringByValue(FailureType));
 }
 
+
+
+void USteamGameInstance::UpdateFriendList_Implementation(FBPFriendInfo FriendInfo, UTexture2D* Avatar)
+{
+	if (MainMenu != nullptr)
+	{
+		MainMenu->UpdateFriendWindow(FriendInfo, Avatar);
+	}
+}
+
+void USteamGameInstance::MainMenuPlayerInfo_Implementation()
+{
+	if (MainMenu != nullptr)
+	{
+		MainMenu->SetPlayerInfo(PlayerInfo.SteamName, PlayerInfo.PlayerImage);
+	}
+}
+
+void USteamGameInstance::ShowLoadingScreen_Implementation()
+{
+	LoadingScreen = Cast<UW_LoadingScreen>(CreateWidget(UGameplayStatics::GetPlayerController(GetWorld(), 0), UW_LoadingScreen::StaticClass()));
+
+	LoadingScreen->AddToViewport();
+}
+
+void USteamGameInstance::ShowHostMenu_Implementation()
+{
+	HostMenu = Cast<UW_HostMenu>(CreateWidget(UGameplayStatics::GetPlayerController(GetWorld(), 0), UW_HostMenu::StaticClass()));
+
+	HostMenu->AddToViewport();
+}
+
+void USteamGameInstance::ShowMainMenu_Implementation()
+{
+	//MainMenu = Cast<UW_MainMenu>(CreateWidget(UGameplayStatics::GetPlayerController(GetWorld(), 0), UW_MainMenu::StaticClass()));
+
+	//MainMenu->AddToViewport();
+}
+
+void USteamGameInstance::ShowOptionsMenu_Implementation()
+{
+	
+}
+
+void USteamGameInstance::ShowServerMenu_Implementation()
+{
+
+}
+
+
+
 void USteamGameInstance::JoinServer_Implementation(FBlueprintSessionResult SessionToJoin)
 {
 	CurrentSession = SessionToJoin;
-	ShowLoadingScreen();
+	IBPI_GameInstance::Execute_ShowLoadingScreen(this);
 
 	JoinSession(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetLocalPlayer(), CurrentSession.OnlineResult);
 }

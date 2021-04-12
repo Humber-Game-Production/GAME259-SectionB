@@ -28,12 +28,13 @@
  */
  
 
-UCLASS(BlueprintType)
+UCLASS()
 class GAME259PROD_SECB_API USteamGameInstance : public UAdvancedFriendsGameInstance ,public IBPI_GameInstance
 {
 	GENERATED_BODY()
 
 public:
+
 
 
 	//Store's the current session that the server is connected too
@@ -91,6 +92,9 @@ public:
 
 public:
 
+	virtual void Init() override;
+
+
 	void SetLobbySettings(int32  MaxPlayers_,FText ServerName_, FString GameID_, bool EnableLan_, bool InLobby_, int32  NumPlayers_ = 0,FText MapName_ = FText::FromString("Not Selected"));
 
 	UFUNCTION(BlueprintCallable, Category = "Server Functions")
@@ -114,6 +118,20 @@ public:
 
 	/*INTERFACE FUNCTIONS*/
 	
+	void ShowMainMenu_Implementation() override;
+
+	void ShowHostMenu_Implementation() override;
+
+	void ShowServerMenu_Implementation() override;
+
+	void ShowOptionsMenu_Implementation() override;
+
+	void ShowLoadingScreen_Implementation()override;
+
+
+	void MainMenuPlayerInfo_Implementation() override;
+
+
 	// Joins into the server with a specific session 
 	 void JoinServer_Implementation(FBlueprintSessionResult SessionToJoin) override;
 
@@ -132,6 +150,7 @@ public:
 	//Returns the players info
 	FS_PlayerInfo GetPlayerInfo_Implementation() override;
 
+	void UpdateFriendList_Implementation(FBPFriendInfo FriendInfo, UTexture2D* Avatar) override;
 
 
 
