@@ -4,7 +4,6 @@
 
 UAbility::UAbility()
 {
-	
 
 }
 

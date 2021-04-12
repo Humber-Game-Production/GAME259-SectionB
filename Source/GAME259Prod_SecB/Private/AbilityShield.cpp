@@ -7,7 +7,7 @@
 
 UAbilityShield::UAbilityShield(const FObjectInitializer& ObjectInitializer) {
 	type = Type::DEFENSIVE;
-
+	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Shield_Icon";
 }
 
 UAbilityShield::~UAbilityShield()

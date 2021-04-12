@@ -5,7 +5,7 @@
 
 UDebuffDefense::UDebuffDefense()
 {
-
+	imagePath = "/Game/ProjectAmulet/Art/Effects/ShieldDown";
 }
 
 UDebuffDefense::~UDebuffDefense()

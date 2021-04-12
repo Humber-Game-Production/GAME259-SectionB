@@ -20,6 +20,8 @@ UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	type = Type::DEFENSIVE;
 
 	//Set image path
+	
+	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Ambrosia_Icon";
 
 }
 
