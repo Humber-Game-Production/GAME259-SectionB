@@ -5,6 +5,7 @@
 
 void USteamGameInstance::LaunchLobby_Implementation(int32  NumberOfPlayers_, bool EnableLan_, const FText& ServerName_, const FString& GameID_, bool InLobby_) 
 {
+	//SetLobbySettings(NumberOfPlayers_, ServerName_, GameID_, EnableLan_, InLobby_);
 
 	TArray<FSessionPropertyKeyPair> properties;
 	
@@ -46,9 +47,45 @@ void USteamGameInstance::SetLobbySettings(int32  MaxPlayers_, FText ServerName_,
 }
 
 
+void USteamGameInstance::ToggleNumPlayers(int32 NumPlayers_)
+{
+	for (auto setting : ServerSettings)
+	{
+		if (setting.Key == FName("NumPlayers"))
+		{
+			setting.Data.SetValue(NumPlayers_);
+		}
 
+	}
+	UUpdateSessionCallbackProxyAdvanced::UpdateSession(GetWorld(), ServerSettings, MaxPlayers, MaxPlayers, EnableLan);
+}
 
+void USteamGameInstance::ToggleInLobby(bool InLobby_)
+{
+	for (auto setting : ServerSettings)
+	{
+		if (setting.Key == FName("InLobby"))
+		{
+			setting.Data.SetValue(InLobby_);
+		}
 
+	}
+
+	UUpdateSessionCallbackProxyAdvanced::UpdateSession(GetWorld(), ServerSettings, MaxPlayers, MaxPlayers, EnableLan);
+}
+
+void USteamGameInstance::ToggleMapName(FText MapName_)
+{
+	for (auto setting : ServerSettings)
+	{
+		if (setting.Key == FName("MapName"))
+		{
+			setting.Data.SetValue(MapName_.ToString());
+		}
+
+	}
+	UUpdateSessionCallbackProxyAdvanced::UpdateSession(GetWorld(), ServerSettings, MaxPlayers, MaxPlayers, EnableLan);
+}
 
 
 FString USteamGameInstance::NetErrorToString(ENetworkFailure::Type FailureType)

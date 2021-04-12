@@ -38,7 +38,7 @@ public:
 
 
 	//Store's the current session that the server is connected too
-	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Server Config")
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Server Config")
 		FBlueprintSessionResult CurrentSession;
 
 	//Store's the ServerSettings that are being used
@@ -62,7 +62,7 @@ public:
 		int32  MaxPlayers;
 
 	// Store's the current selected/being played map of the server 
-	UPROPERTY(BlueprintReadWrite, Category = "Server Config")
+	UPROPERTY(BlueprintReadOnly, Category = "Server Config")
 		FText MapName;
 	
 	// Store's the servers name
@@ -79,15 +79,15 @@ public:
 		FString GameID;
 
 	//Keeps track of if the players are in the lobby or in game 
-	UPROPERTY(BlueprintReadWrite, Category = "Server Config")
+	UPROPERTY(BlueprintReadOnly, Category = "Server Config")
 		bool InLobby;
 
 	//Keeps track of if the server is Lan or Internet server
-	UPROPERTY(BlueprintReadWrite, Category = "Server Config")
+	UPROPERTY(BlueprintReadOnly, Category = "Server Config")
 		bool EnableLan;
 
 	//Store's the current amount of players in the server
-	UPROPERTY(BlueprintReadWrite, Category = "Server Config")
+	UPROPERTY(BlueprintReadOnly, Category = "Server Config")
 		int32 NumPlayers;
 
 public:
@@ -98,14 +98,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Helper Functions")
 		void SetLobbySettings(int32  MaxPlayers_,FText ServerName_, FString GameID_, bool EnableLan_, bool InLobby_, int32  NumPlayers_ ,FText MapName_);
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Server Functions")
+	UFUNCTION(BlueprintCallable, Category = "Server Functions")
 		void ToggleNumPlayers(int32 NumPlayers_);
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Server Functions")
+	UFUNCTION(BlueprintCallable, Category = "Server Functions")
 		void ToggleInLobby(bool InLobby_);
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Server Functions")
-		void ToggleMapName(const FText& MapName_);
+	UFUNCTION(BlueprintCallable, Category = "Server Functions")
+		void ToggleMapName(FText MapName_);
 
 	UFUNCTION(BlueprintCallable, Category = "Error Functions")
 		FString NetErrorToString(ENetworkFailure::Type FailureType);
