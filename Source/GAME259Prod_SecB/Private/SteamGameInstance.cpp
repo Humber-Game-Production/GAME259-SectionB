@@ -5,7 +5,7 @@
 
 void USteamGameInstance::LaunchLobby_Implementation(int32  NumberOfPlayers_, bool EnableLan_, const FText& ServerName_, const FString& GameID_, bool InLobby_) 
 {
-	//SetLobbySettings(NumberOfPlayers_, ServerName_, GameID_, EnableLan_, InLobby_);
+	SetLobbySettings(NumberOfPlayers_, ServerName_, GameID_, EnableLan_, InLobby_);
 
 	TArray<FSessionPropertyKeyPair> properties;
 	
