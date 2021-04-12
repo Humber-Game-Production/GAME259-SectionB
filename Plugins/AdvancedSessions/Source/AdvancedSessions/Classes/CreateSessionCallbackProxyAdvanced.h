@@ -6,11 +6,11 @@
 #include "BlueprintDataDefinitions.h"
 #include "CreateSessionCallbackProxyAdvanced.generated.h"
 
-UCLASS()
-class ADVANCEDSESSIONS_API  UCreateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
+UCLASS(MinimalAPI)
+class UCreateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
 {
 	GENERATED_UCLASS_BODY()
-public:
+
 	// Called when the session was created successfully
 	UPROPERTY(BlueprintAssignable)
 	FEmptyOnlineDelegate OnSuccess;

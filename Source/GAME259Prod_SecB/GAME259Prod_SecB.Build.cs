@@ -1,20 +1,15 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-
-
 using UnrealBuildTool;
+
 public class GAME259Prod_SecB : ModuleRules
 {
 	public GAME259Prod_SecB(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG", "AdvancedSessions", "AdvancedSteamSessions", "OnlineSubsystem", "OnlineSubsystemUtils" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG", "AdvancedSessions", "AdvancedSteamSessions" });
 
 
-        DynamicallyLoadedModuleNames.Add("OnlineSubsystemNull");
-        DynamicallyLoadedModuleNames.Add("OnlineSubsystemSteam");
-        PrivateDependencyModuleNames.Add("OnlineSubsystem");
-
-    }
+	}
 }

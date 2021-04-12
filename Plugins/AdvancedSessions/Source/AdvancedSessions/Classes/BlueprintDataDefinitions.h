@@ -221,7 +221,7 @@ public:
 USTRUCT(BluePrintType)
 struct FBPOnlineUser
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Online|Friend")
@@ -235,7 +235,7 @@ public:
 USTRUCT(BluePrintType)
 struct FBPOnlineRecentPlayer : public FBPOnlineUser
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Online|Friend")
@@ -246,7 +246,7 @@ public:
 USTRUCT(BlueprintType)
 struct FBPFriendPresenceInfo
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 
 public:
 
@@ -271,7 +271,7 @@ public:
 USTRUCT(BlueprintType)
 struct FBPFriendInfo
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 
 public:
 
@@ -307,7 +307,7 @@ enum class EOnlineComparisonOpRedux : uint8
 USTRUCT(BlueprintType)
 struct FSessionPropertyKeyPair
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 
 	FName Key;
 	FVariantData Data;
@@ -318,7 +318,7 @@ struct FSessionPropertyKeyPair
 USTRUCT(BlueprintType)
 struct FSessionsSearchSetting
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 	//UPROPERTY()
 
 
