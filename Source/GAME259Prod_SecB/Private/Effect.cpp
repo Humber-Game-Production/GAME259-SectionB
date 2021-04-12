@@ -5,12 +5,12 @@
 
 UEffect::UEffect()
 {
-
+	
 }
 
 UEffect::~UEffect()
 {
-	delete(effectIcon);
+	//delete(effectIcon);
 }
 
 void UEffect::Start(bool isTimed, float duration) {
@@ -23,26 +23,17 @@ void UEffect::Start(bool isTimed, float duration) {
 }
 
 void UEffect::Apply() {
-	//icon should be replaced by the TSoftObjectPtr<UTexture2D> / or what else can be used to get the image
 	FSlateBrush imageBrush{};
-	imageBrush.ImageSize = FVector2D{ 6.0f,6.0f };
+	imageBrush.ImageSize = FVector2D{ 100.0f,100.0f };
 
-	
 	//Insert texture link.
-	UTexture2D* texture = Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
+	UTexture2D* texture = Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), nullptr, *imagePath));
 	imageBrush.SetResourceObject(texture);
 	effectIcon = NewObject<UImage>();
 
 	effectIcon->SetBrush(imageBrush);
 
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetEffectBox()->AddChildToHorizontalBox(effectIcon);
-
-	//UTexture2D texture;
-	//static ConstructorHelpers::FObjectFinder<UTexture2D> texture(TEXT("/Content/StarterContent/Textures/T_Brick_Clay_Beveled_D.uasset"));
-	//image->SetBrushFromTexture(&texture);
-	//widget = widget_;
-
-	//NewObject<>(UGameplayStatics::GetPlayerController(GetWorld(), 0), FName("Attack"));
 }
 
 void UEffect::Remove() {

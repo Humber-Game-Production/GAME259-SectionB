@@ -14,10 +14,13 @@ UBuffSpeed::~UBuffSpeed()
 
 void UBuffSpeed::Apply()
 {
+	//UEffect::Apply();
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeSpeedMulti(1.0f);
 }
 void UBuffSpeed::Remove()
 {
+	//UEffect::Remove();
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeSpeedMulti(-1.0f);
 }
+
 

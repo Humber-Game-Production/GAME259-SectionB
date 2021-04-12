@@ -8,6 +8,7 @@
 #include "DebuffAttack.h"
 #include "DebuffDefense.h"
 #include "DebuffSpeed.h"
+#include "HealOverTime.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
 UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
@@ -19,6 +20,7 @@ UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	type = Type::DEFENSIVE;
 
 	//Set image path
+
 }
 
 UAbilityAmbrosia::~UAbilityAmbrosia()
@@ -30,6 +32,8 @@ void UAbilityAmbrosia::Activate()
 	//Heal player
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(floatValue);
 
+	UHealOverTime* heal = NewObject<UHealOverTime>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Healing"));
+
 	//Apply the three Buffs
 	UBuffAttack* buffOne = NewObject<UBuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackUp"));
 	UBuffDefense* buffTwo = NewObject<UBuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseUp"));
@@ -39,6 +43,7 @@ void UAbilityAmbrosia::Activate()
 	buffOne->Start(true, buffTime);
 	buffTwo->Start(true, buffTime);
 	buffThree->Start(true, buffTime);
+	heal->Start(true, 20.0f);
 
 	//Apply Debuff
 	FTimerHandle Timing;
