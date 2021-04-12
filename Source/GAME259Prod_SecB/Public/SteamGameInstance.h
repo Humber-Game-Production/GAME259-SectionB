@@ -98,13 +98,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Helper Functions")
 		void SetLobbySettings(int32  MaxPlayers_,FText ServerName_, FString GameID_, bool EnableLan_, bool InLobby_, int32  NumPlayers_ ,FText MapName_);
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Server Functions")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Server Functions")
 		void ToggleNumPlayers(int32 NumPlayers_);
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Server Functions")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Server Functions")
 		void ToggleInLobby(bool InLobby_);
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Server Functions")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Server Functions")
 		void ToggleMapName(const FText& MapName_);
 
 	UFUNCTION(BlueprintCallable, Category = "Error Functions")
