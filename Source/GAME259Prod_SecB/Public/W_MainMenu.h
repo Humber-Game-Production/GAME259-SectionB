@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-
 #include "W_BaseMenu.h"
 #include "AdvancedSessionsLibrary.h"
 
@@ -58,13 +57,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		 void SetPlayerInfo(const FText& Playername, UTexture2D* Texture);
 
-	virtual void SetPlayerInfo_Implementation(const FText& Playername, UTexture2D* Texture);
-
-
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		 void UpdateFriendWindow(FBPFriendInfo Friend, UTexture2D* Texture2D);
 
-	virtual void UpdateFriendWindow_Implementation(FBPFriendInfo Friend, UTexture2D* Texture2D);
 
 
 };

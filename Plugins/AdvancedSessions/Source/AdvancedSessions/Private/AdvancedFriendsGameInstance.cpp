@@ -332,4 +332,3 @@ void UAdvancedFriendsGameInstance::OnSessionInviteAcceptedMaster(const bool bWas
 		}
 	}
 }
-
