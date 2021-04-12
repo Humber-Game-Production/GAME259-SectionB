@@ -95,7 +95,8 @@ public:
 	virtual void Init() override;
 
 
-	void SetLobbySettings(int32  MaxPlayers_,FText ServerName_, FString GameID_, bool EnableLan_, bool InLobby_, int32  NumPlayers_ = 0,FText MapName_ = FText::FromString("Not Selected"));
+	UFUNCTION(BlueprintCallable, Category = "Helper Functions")
+		void SetLobbySettings(int32  MaxPlayers_,FText ServerName_, FString GameID_, bool EnableLan_, bool InLobby_, int32  NumPlayers_ ,FText MapName_);
 
 	UFUNCTION(BlueprintCallable, Category = "Server Functions")
 		void ToggleNumPlayers(int32 NumPlayers_);
