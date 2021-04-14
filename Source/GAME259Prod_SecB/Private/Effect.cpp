@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "Effect.h"
-#include "../GAME259Prod_SecBCharacter.h"
+#include "MatchPlayerState.h"
 
 
 UEffect::UEffect()
@@ -33,7 +33,8 @@ void UEffect::Apply() {
 
 	effectIcon->SetBrush(imageBrush);
 
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetEffectBox()->AddChildToHorizontalBox(effectIcon);
+	//Test changing this to Match player state
+	Cast<AMatchPlayerState>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0)->GetPlayerState())->GetEffectBox()->AddChildToHorizontalBox(effectIcon);
 }
 
 void UEffect::Remove() {

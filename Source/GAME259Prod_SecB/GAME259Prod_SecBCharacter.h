@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Public/Ability.h"
-#include "Components/HorizontalBox.h"
 #include "GAME259Prod_SecBCharacter.generated.h"
 
 
@@ -55,10 +54,6 @@ public:
 
 protected:
 
-	//Reference to HUD Widget for Effectss
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = WidgetRef)
-	UHorizontalBox* effectBox;
-
 	/** Used to increase player damage. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stats)
 	float attackMulti;
@@ -104,8 +99,6 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	/** Returns effectBox **/
-	FORCEINLINE class UHorizontalBox* GetEffectBox() const { return effectBox; }
 
 	//C++ Getters
 
