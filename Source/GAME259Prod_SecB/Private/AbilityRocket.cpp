@@ -3,6 +3,7 @@
 
 #include "AbilityRocket.h"
 #include "Kismet/GameplayStatics.h"
+#include "../GAME259Prod_SecBCharacter.h"
 #include "Rocket.h"
 
 
@@ -11,6 +12,9 @@ UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 	type = Type::OFFENSIVE;
     range = 2.0f;
 
+    floatValue = 30.0f; //Damage
+
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RocketShot_Icon";
 }
 
 UAbilityRocket::~UAbilityRocket() {
@@ -44,7 +48,5 @@ void UAbilityRocket::Activate()
     FActorSpawnParameters spawnPara;
     spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     //Spawn Rocket Here.
-    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara);
-    
-	
+    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue * Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetAttackMulti());
 }

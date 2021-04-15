@@ -14,9 +14,11 @@ UBuffAttack::~UBuffAttack()
 }
 
 void UBuffAttack::Apply() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->attackMulti += 1.0f;
+	//UEffect::Apply();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeAttackMulti(1.0f);
 }
 
 void UBuffAttack::Remove() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->attackMulti -= 1.0f;
+	//UEffect::Remove();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeAttackMulti(-1.0f);
 }

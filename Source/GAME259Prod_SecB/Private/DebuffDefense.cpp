@@ -5,7 +5,7 @@
 
 UDebuffDefense::UDebuffDefense()
 {
-
+	imagePath = "/Game/ProjectAmulet/Art/Effects/ShieldDown";
 }
 
 UDebuffDefense::~UDebuffDefense()
@@ -14,10 +14,11 @@ UDebuffDefense::~UDebuffDefense()
 }
 
 void UDebuffDefense::Apply() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->defenseMulti -= 1.0f;
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(-1.0f);
 }
 
 void UDebuffDefense::Remove() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->defenseMulti += 1.0f;
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(1.0f);
 }
+
 
