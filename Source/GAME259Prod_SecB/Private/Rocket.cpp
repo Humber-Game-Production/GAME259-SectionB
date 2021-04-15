@@ -59,6 +59,8 @@ ARocket::ARocket()
 	//Set Tag.
 	Tags.Add("Rocket");
 
+
+	//TODO: SetLifeTime Limit?
 }
 
 void ARocket::Initalize(float damage_) {
@@ -69,7 +71,6 @@ void ARocket::Initalize(float damage_) {
 void ARocket::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

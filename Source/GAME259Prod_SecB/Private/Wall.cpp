@@ -20,13 +20,13 @@ void AWall::BeginPlay()
 
 void AWall::Initialize()
 {
-
 }
 
 // Called every frame
 void AWall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 
 }
 
