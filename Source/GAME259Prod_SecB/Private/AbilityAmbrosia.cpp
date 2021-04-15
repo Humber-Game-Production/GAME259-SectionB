@@ -27,6 +27,7 @@ UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 
 UAbilityAmbrosia::~UAbilityAmbrosia()
 {
+	GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
 }
 
 void UAbilityAmbrosia::Activate()

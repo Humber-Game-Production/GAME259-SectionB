@@ -33,12 +33,6 @@ private:
 
 	FTimerHandle Timer;
 
-	/** Call to apply effect
-	isTimed = should the effect be removed after duration has passed?
-
-	duration = if effect is timed how long until it is removed.
-	*/
-
 public:
 	UFUNCTION(BlueprintCallable, Category = "Init")
 	void Start(bool isTimed, float duration_);

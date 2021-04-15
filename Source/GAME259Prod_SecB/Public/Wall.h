@@ -20,7 +20,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	float timeAlive;
 
 public:	
 	UFUNCTION()
