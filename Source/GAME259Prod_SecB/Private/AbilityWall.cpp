@@ -14,6 +14,7 @@ AAbilityWall::AAbilityWall() {
 
     //ImagePath
     imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Force_Field-Wall_Icon";
+    SetReplicates(true);
 }
 
 AAbilityWall::~AAbilityWall() {}

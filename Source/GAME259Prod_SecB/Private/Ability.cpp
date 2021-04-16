@@ -4,7 +4,7 @@
 
 AAbility::AAbility()
 {
-
+	SetReplicates(true);
 }
 
 AAbility::~AAbility()
