@@ -108,7 +108,7 @@ void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrim
 		300.0f,
 		12,
 		FColor::Red,
-		true,
+		false,
 		1.0f,
 		0,
 		1.0f);
