@@ -22,6 +22,5 @@ void UHealOverTime::TickEffect() {
 
 void UHealOverTime::Remove()
 {
-	tickTimer.Invalidate();
 }
 
