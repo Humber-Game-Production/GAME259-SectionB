@@ -6,7 +6,7 @@
 #include "../GAME259Prod_SecBCharacter.h"
 #include "Wall.h"
 
-UAbilityWall::UAbilityWall() {
+AAbilityWall::AAbilityWall() {
     //Duration of the ability
     floatValue = 5.0f;
 
@@ -16,9 +16,9 @@ UAbilityWall::UAbilityWall() {
     imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Force_Field-Wall_Icon";
 }
 
-UAbilityWall::~UAbilityWall() {}
+AAbilityWall::~AAbilityWall() {}
 
-void UAbilityWall::Activate()
+void AAbilityWall::Activate()
 {
     FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
     FVector startLoc = trans.GetLocation();

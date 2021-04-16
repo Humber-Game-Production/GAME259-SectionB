@@ -2,36 +2,36 @@
 
 #include "Ability.h"
 
-UAbility::UAbility()
+AAbility::AAbility()
 {
 
 }
 
-UAbility::~UAbility()
+AAbility::~AAbility()
 {
 }
 
-void UAbility::Activate()
+void AAbility::Activate()
 {
 
 }
 
-UTexture2D* UAbility::GetIcon()
+UTexture2D* AAbility::GetIcon()
 {
 	return Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
 }
 
-Type UAbility::GetType()
+Type AAbility::GetType()
 {
 	return type;
 }
 
-void UAbility::Calling_Implementation() {
+void AAbility::Calling_Implementation() {
 	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Calling");
 	Activate();
 }
 
-bool UAbility::Calling_Validate() {
+bool AAbility::Calling_Validate() {
 	return true;
 }
 

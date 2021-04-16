@@ -10,13 +10,13 @@
  * 
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UAbilityRocket : public UAbility
+class GAME259PROD_SECB_API AAbilityRocket : public AAbility
 {
 	GENERATED_BODY()
 
 public:
-	UAbilityRocket(const FObjectInitializer& ObjectInitializer);
-	~UAbilityRocket();
+	AAbilityRocket(const FObjectInitializer& ObjectInitializer);
+	~AAbilityRocket();
 
 
 virtual void Activate() override;

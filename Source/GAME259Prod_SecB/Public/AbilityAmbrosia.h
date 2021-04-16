@@ -10,12 +10,12 @@
  * 
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UAbilityAmbrosia : public UAbility
+class GAME259PROD_SECB_API AAbilityAmbrosia : public AAbility
 {
 	GENERATED_BODY()
 	
 public:
-	UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer);
+	AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer);
 
 	virtual void Activate() override;
 

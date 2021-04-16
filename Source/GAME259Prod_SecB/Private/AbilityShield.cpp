@@ -5,17 +5,17 @@
 #include "Shield.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-UAbilityShield::UAbilityShield(const FObjectInitializer& ObjectInitializer) {
+AAbilityShield::AbilityShield(const FObjectInitializer& ObjectInitializer) {
 	type = Type::DEFENSIVE;
 	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Shield_Icon";
 }
 
-UAbilityShield::~UAbilityShield()
+AAbilityShield::~AAbilityShield()
 {
 	//Content/ThirdPersonCPP/Blueprints/Shield.uasset
 }
 
-void UAbilityShield::Activate()
+void AAbilityShield::Activate()
 {
 	//Internal cool down.
 	if (Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded == false) {

@@ -10,14 +10,14 @@
  * 
  */
 UCLASS()
-class GAME259PROD_SECB_API UAbilityShield : public UAbility
+class GAME259PROD_SECB_API AAbilityShield : public AAbility
 {
 	GENERATED_BODY()
 
 public:
 
-	UAbilityShield(const FObjectInitializer& ObjectInitializer);
-	~UAbilityShield();
+	AAbilityShield(const FObjectInitializer& ObjectInitializer);
+	~AAbilityShield();
 
 	virtual void Activate() override;
 };

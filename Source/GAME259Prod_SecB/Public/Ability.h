@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
+#include "GameFramework/Actor.h"
 #include "Ability.generated.h"
 
 /**
@@ -17,12 +17,12 @@ enum class Type : uint8 {
 };
 
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API UAbility : public UObject
+class GAME259PROD_SECB_API AAbility : public AActor
 {
 	GENERATED_BODY()
 public:
-	UAbility();
-	~UAbility();
+	AAbility();
+	~AAbility();
 
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)

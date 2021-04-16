@@ -8,7 +8,7 @@
 
 
 
-UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
+AAbilityRocket::AAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 	type = Type::OFFENSIVE;
     range = 2.0f;
 
@@ -17,11 +17,11 @@ UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
     imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RocketShot_Icon";
 }
 
-UAbilityRocket::~UAbilityRocket() {
+AAbilityRocket::~AAbilityRocket() {
 
 }
 
-void UAbilityRocket::Activate()
+void AAbilityRocket::Activate()
 {
     GEngine->AddOnScreenDebugMessage(-1, 100, FColor::Red, "RockYou");
 

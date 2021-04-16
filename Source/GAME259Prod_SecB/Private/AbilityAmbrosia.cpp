@@ -11,7 +11,7 @@
 #include "HealOverTime.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
+AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
 	//Set values
 	floatValue = 25.0f; //Heal amount
 	buffTime = 5.0f;
@@ -25,7 +25,7 @@ UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 
 }
 
-void UAbilityAmbrosia::Activate()
+void AAbilityAmbrosia::Activate()
 {
 	//Heal player
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(floatValue);
@@ -48,7 +48,7 @@ void UAbilityAmbrosia::Activate()
 	GetWorld()->GetTimerManager().SetTimer(Timing, this, &UAbilityAmbrosia::ApplyDebuff, 3.0f, false);
 }
 
-void UAbilityAmbrosia::ApplyDebuff()
+void AAbilityAmbrosia::ApplyDebuff()
 {
 	//Apply debuffs here
 	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
