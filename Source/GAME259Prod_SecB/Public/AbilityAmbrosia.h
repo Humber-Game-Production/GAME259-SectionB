@@ -16,7 +16,6 @@ class GAME259PROD_SECB_API UAbilityAmbrosia : public UAbility
 	
 public:
 	UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer);
-	~UAbilityAmbrosia();
 
 	virtual void Activate() override;
 

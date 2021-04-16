@@ -11,7 +11,6 @@ UEffect::UEffect()
 UEffect::~UEffect()
 {
 	//delete(effectIcon);
-	GetWorld()->GetTimerManager().ClearTimer(Timer);
 }
 
 void UEffect::Start(bool isTimed, float duration) {
