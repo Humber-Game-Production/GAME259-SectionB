@@ -81,6 +81,46 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 	PlayerInputComponent->BindAxis("TurnRate", this, &AGAME259Prod_SecBCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AGAME259Prod_SecBCharacter::LookUpAtRate);
+
+	health = 100;
+	maxHealth = 100;
+}
+
+void AGAME259Prod_SecBCharacter::ChangeHealth_Implementation(float value_) {
+
+	health += value_;
+	if (health < 0.0f) { health = 0.0f; }
+	else if (maxHealth < health) { health = maxHealth; }
+}
+
+float AGAME259Prod_SecBCharacter::GetAttackMulti() const
+{
+	return attackMulti;
+}
+
+float AGAME259Prod_SecBCharacter::GetDefenseMulti() const
+{
+	return defenseMulti;
+}
+
+float AGAME259Prod_SecBCharacter::GetSpeedMulti() const
+{
+	return speedMulti;
+}
+
+void AGAME259Prod_SecBCharacter::ChangeAttackMulti(float value_)
+{
+	attackMulti += value_;
+}
+
+void AGAME259Prod_SecBCharacter::ChangeDefenseMulti(float value_)
+{
+	defenseMulti += value_;
+}
+
+void AGAME259Prod_SecBCharacter::ChangeSpeedMulti(float value_)
+{
+	speedMulti += value_;
 }
 
 // START OF DOUBLE JUMP MECHANIC

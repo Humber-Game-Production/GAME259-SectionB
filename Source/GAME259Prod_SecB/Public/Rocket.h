@@ -17,6 +17,16 @@ public:
 	// Sets default values for this actor's properties
 	ARocket();
 
+	UFUNCTION()
+	void Initalize(float damage_); //Used to initalize the object.
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -24,20 +34,14 @@ protected:
 private:
 	float damage;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 	/** Projectile movement component */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Your Category", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
 	/** sphere component */
-	UPROPERTY(VisibleAnywhere, Category = "Switch Components")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class USphereComponent* Bounds;
 
-	UFUNCTION()
-	void OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 
 };

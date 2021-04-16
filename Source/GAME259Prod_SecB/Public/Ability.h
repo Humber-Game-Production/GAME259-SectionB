@@ -24,18 +24,9 @@ public:
 	UAbility();
 	~UAbility();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-	Type type;
-
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 	float floatValue;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-	FString imagePath;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-	UTexture2D* icon;
 
 	//Nested Multicast Function
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = Status)
@@ -44,7 +35,16 @@ public:
 	UFUNCTION(Category = Status)
 	virtual void Activate();
 
+	UFUNCTION(BlueprintCallable, Category = Status)
+	UTexture2D* GetIcon();
 
+	UFUNCTION(BlueprintCallable, Category = Status)
+	Type GetType();
 
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
+	FString imagePath;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
+	Type type;
 };

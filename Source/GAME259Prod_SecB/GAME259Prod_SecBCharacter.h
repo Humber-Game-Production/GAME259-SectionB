@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Public/Ability.h"
-#include "Components/HorizontalBox.h"
 #include "GAME259Prod_SecBCharacter.generated.h"
 
 
@@ -21,6 +20,7 @@ class AGAME259Prod_SecBCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
 public:
 	AGAME259Prod_SecBCharacter();
 
@@ -36,17 +36,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
 	float health;
 
-	/** Used to increase player damage. */
+	/** Player MaxHealth value. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
-	float attackMulti;
-
-	/** Used to reduce damage player takes. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
-	float defenseMulti; 
-
-	/** Used to change player speed. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
-	float speedMulti;
+	float maxHealth;
 
 	/** Indicates player is protected. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
@@ -59,6 +51,20 @@ public:
 	/** Used to change player speed. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
 	UAbility* defensiveAbility;
+
+protected:
+
+	/** Used to increase player damage. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stats)
+	float attackMulti;
+
+	/** Used to reduce damage player takes. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stats)
+	float defenseMulti;
+
+	/** Used to change player speed. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stats)
+	float speedMulti;
 
 
 protected:
@@ -81,11 +87,6 @@ protected:
 	 */
 	void LookUpAtRate(float Rate);
 
-	//Reference to HUD Widget for Effectss
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = WidgetRef)
-	UHorizontalBox* effectBox;
-
-protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
@@ -98,9 +99,31 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	/** Returns effectBox **/
-	FORCEINLINE class UHorizontalBox* GetEffectBox() const { return effectBox; }
 
+	//C++ Getters
+
+	UFUNCTION()
+	float GetAttackMulti() const;
+
+	UFUNCTION()
+	float GetDefenseMulti() const;
+
+	UFUNCTION()
+	float GetSpeedMulti() const;
+
+	//C++ Setters
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Functions") 
+	void ChangeHealth(float value_);
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeAttackMulti(float value_);
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeDefenseMulti(float value_);
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeSpeedMulti(float value_);
 
 
 	// Double Jump Mechanic
