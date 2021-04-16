@@ -29,7 +29,7 @@ public:
 	float floatValue;
 
 	//Nested Multicast Function
-	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = Status)
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, WithValidation, Category = Status)
 	void Calling();
 
 	UFUNCTION(Category = Status)

@@ -31,3 +31,7 @@ void UAbility::Calling_Implementation() {
 	Activate();
 }
 
+bool UAbility::Calling_Validate() {
+	return true;
+}
+
