@@ -18,5 +18,6 @@ public:
 	AAbilityWall();
 	~AAbilityWall();
 	virtual void Activate() override;
-	virtual void Boom() override;
+	virtual void Boom_Implementation() override;
+	virtual bool Boom_Validate() override;
 };

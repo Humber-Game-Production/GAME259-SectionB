@@ -18,7 +18,9 @@ public:
 	AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer);
 
 	virtual void Activate() override;
-	virtual void Boom() override;
+	virtual void Boom_Implementation() override;
+	virtual bool Boom_Validate() override;
+
 private:
 
 	void ApplyDebuff();
