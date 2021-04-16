@@ -25,7 +25,19 @@ AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 
 }
 
-void AAbilityAmbrosia::Activate()
+void AAbilityAmbrosia::ApplyDebuff()
+{
+	//Apply debuffs here
+	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
+	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseDown"));
+	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedDown"));
+
+	deOne->Start(true, debuffTime);
+	deTwo->Start(true, debuffTime);
+	deThree->Start(true, debuffTime);
+}
+
+void AAbilityAmbrosia::Activate_Implementation()
 {
 	//Heal player
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(floatValue);
@@ -48,16 +60,9 @@ void AAbilityAmbrosia::Activate()
 	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, 3.0f, false);
 }
 
-void AAbilityAmbrosia::ApplyDebuff()
+bool AAbilityAmbrosia::Activate_Validate()
 {
-	//Apply debuffs here
-	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
-	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseDown"));
-	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedDown"));
-
-	deOne->Start(true, debuffTime);
-	deTwo->Start(true, debuffTime);
-	deThree->Start(true, debuffTime);
+	return true;
 }
 
 void AAbilityAmbrosia::Boom_Implementation()

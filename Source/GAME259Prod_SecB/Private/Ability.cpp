@@ -11,9 +11,24 @@ AAbility::~AAbility()
 {
 }
 
-void AAbility::Activate()
+void AAbility::Activate_Implementation()
 {
 
+}
+
+bool AAbility::Activate_Validate()
+{
+	return true;
+}
+
+void AAbility::Server_Activate_Implementation()
+{
+	Activate();
+}
+
+bool AAbility::Server_Activate_Validate()
+{
+	return true;
 }
 
 UTexture2D* AAbility::GetIcon()
@@ -34,12 +49,14 @@ bool AAbility::Boom_Validate() {
 	return true;
 }
 
-void AAbility::Calling_Implementation() {
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Calling");
-	Activate();
-}
+void AAbility::Calling() {
+	
 
-bool AAbility::Calling_Validate() {
-	return true;
+	if (!HasAuthority()) {
+		Server_Activate();
+	}
+	else {
+		Activate();
+	}
 }
 

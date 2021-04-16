@@ -19,7 +19,7 @@ AAbilityWall::AAbilityWall() {
 
 AAbilityWall::~AAbilityWall() {}
 
-void AAbilityWall::Activate()
+void AAbilityWall::Activate_Implementation()
 {
     FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
     FVector startLoc = trans.GetLocation();
@@ -30,6 +30,12 @@ void AAbilityWall::Activate()
     spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
     GetWorld()->SpawnActor<AWall>(AWall::StaticClass(), trans, spawnPara)->SetLifeSpan(floatValue);
+
+}
+
+bool AAbilityWall::Activate_Validate()
+{
+    return true;
 }
 
 void AAbilityWall::Boom_Implementation()

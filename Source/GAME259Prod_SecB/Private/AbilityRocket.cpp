@@ -23,7 +23,7 @@ AAbilityRocket::~AAbilityRocket() {
 
 }
 
-void AAbilityRocket::Activate()
+void AAbilityRocket::Activate_Implementation()
 {
     GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "RockYou");
 
@@ -53,6 +53,12 @@ void AAbilityRocket::Activate()
     spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     //Spawn Rocket Here.
     GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue * Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetAttackMulti());
+
+}
+
+bool AAbilityRocket::Activate_Validate()
+{
+    return true;
 }
 
 void AAbilityRocket::Boom_Implementation()

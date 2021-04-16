@@ -29,11 +29,17 @@ public:
 		float floatValue;
 
 	//Nested Multicast Function
-	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, WithValidation, Category = Status)
+	UFUNCTION(BlueprintCallable)
 	void Calling();
 
-	UFUNCTION(Category = Status)
+	UFUNCTION(NetMulticast, Reliable, WithValidation)
 	virtual void Activate();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_Activate();
+
+	UFUNCTION(NetMulticast, Reliable, WithValidation)
+	virtual void Boom();
 
 	UFUNCTION(BlueprintCallable, Category = Status)
 	UTexture2D* GetIcon();
@@ -41,8 +47,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Status)
 	Type GetType();
 
-	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, WithValidation)
-	virtual	void Boom();
+
 
 
 protected:

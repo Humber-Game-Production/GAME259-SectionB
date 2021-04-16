@@ -16,7 +16,7 @@ AAbilityShield::~AAbilityShield()
 	//Content/ThirdPersonCPP/Blueprints/Shield.uasset
 }
 
-void AAbilityShield::Activate()
+void AAbilityShield::Activate_Implementation()
 {
 	//Internal cool down.
 	if (Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded == false) {
@@ -33,6 +33,11 @@ void AAbilityShield::Activate()
 
 		//Crieria of removal - 1. health = 0, 2. time = 0, 3. pickup new ability
 	}
+}
+
+bool AAbilityShield::Activate_Validate()
+{
+	return true;
 }
 
 void AAbilityShield::Boom_Implementation()
