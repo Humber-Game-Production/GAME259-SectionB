@@ -5,7 +5,7 @@
 #include "Shield.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-AAbilityShield::AbilityShield(const FObjectInitializer& ObjectInitializer) {
+AAbilityShield::AAbilityShield(const FObjectInitializer& ObjectInitializer) {
 	type = Type::DEFENSIVE;
 	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Shield_Icon";
 }
