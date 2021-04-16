@@ -52,9 +52,11 @@ bool AAbility::Boom_Validate() {
 void AAbility::Calling() {
 
 	if (!HasAuthority()) {
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Doesn't have Auth");
 		Server_Activate();
 	}
 	else {
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Has Auth");
 		Activate();
 	}
 }
