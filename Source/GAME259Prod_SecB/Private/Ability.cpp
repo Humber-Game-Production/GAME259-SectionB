@@ -50,13 +50,13 @@ bool AAbility::Boom_Validate() {
 }
 
 void AAbility::Calling() {
-	
+	Activate();
 
 	if (!HasAuthority()) {
 		Server_Activate();
 	}
 	else {
-		Activate();
+		
 	}
 }
 

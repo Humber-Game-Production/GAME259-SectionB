@@ -59,6 +59,7 @@ ARocket::ARocket()
 	//Set Tag.
 	Tags.Add("Rocket");
 
+	bReplicates = true;
 
 	//TODO: SetLifeTime Limit?
 }
@@ -82,6 +83,9 @@ void ARocket::Tick(float DeltaTime)
 
 void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
+	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "RocketFired");
+	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetName());
+
 	//Would this method add pawn?
 	TArray<TEnumAsByte<EObjectTypeQuery>> objTypes;
 	objTypes.Add(EObjectTypeQuery::ObjectTypeQuery2);
@@ -120,6 +124,7 @@ void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrim
 				nullptr, //DamageCauser
 				dam);
 		}
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, OtherActor->GetName());
 	}
 
 	Destroy();

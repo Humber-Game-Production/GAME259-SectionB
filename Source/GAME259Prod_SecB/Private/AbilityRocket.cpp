@@ -16,7 +16,9 @@ AAbilityRocket::AAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 
     imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RocketShot_Icon";
 
-    SetReplicates(true);
+    bReplicates = true;
+
+    bAlwaysRelevant = true;
 }
 
 AAbilityRocket::~AAbilityRocket() {
@@ -25,8 +27,6 @@ AAbilityRocket::~AAbilityRocket() {
 
 void AAbilityRocket::Activate_Implementation()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "RockYou");
-
     FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true);
     RV_TraceParams.bTraceComplex = true;
     //RV_TraceParams.bTraceAsyncScene = true;
@@ -34,9 +34,13 @@ void AAbilityRocket::Activate_Implementation()
 
     //Re-initialize hit info
     FHitResult RV_Hit(ForceInit);
-    FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
+
+    
+    FTransform trans = GetOwner()->GetTransform();
     FVector startLoc = trans.GetLocation();
     FVector playerForward = trans.GetRotation().GetForwardVector();
+
+    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, startLoc.ToString());
 
     //call GetWorld() from within an actor extending class
     GetWorld()->LineTraceSingleByChannel(
@@ -50,7 +54,7 @@ void AAbilityRocket::Activate_Implementation()
 
     trans.SetLocation(playerForward * 100 + startLoc);
     FActorSpawnParameters spawnPara;
-    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
     //Spawn Rocket Here.
     GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue * Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetAttackMulti());
 
