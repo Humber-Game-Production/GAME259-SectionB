@@ -26,11 +26,13 @@ public:
 
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-	float floatValue;
+		float floatValue;
 
 	//Nested Multicast Function
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, WithValidation, Category = Status)
 	void Calling();
+	void Calling_Implementation();
+	bool Calling_Validate();
 
 	UFUNCTION(Category = Status)
 	virtual void Activate();
