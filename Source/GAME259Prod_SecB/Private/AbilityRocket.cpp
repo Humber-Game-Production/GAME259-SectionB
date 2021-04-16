@@ -23,6 +23,8 @@ UAbilityRocket::~UAbilityRocket() {
 
 void UAbilityRocket::Activate()
 {
+    GEngine->AddOnScreenDebugMessage(-1, 100, FColor::Red, "RockYou");
+
     FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true);
     RV_TraceParams.bTraceComplex = true;
     //RV_TraceParams.bTraceAsyncScene = true;

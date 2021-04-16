@@ -27,6 +27,7 @@ Type UAbility::GetType()
 }
 
 void UAbility::Calling_Implementation() {
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Calling");
 	Activate();
 }
 
