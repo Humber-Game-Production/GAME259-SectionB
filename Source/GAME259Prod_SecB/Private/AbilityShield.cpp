@@ -33,3 +33,12 @@ void AAbilityShield::Activate()
 		//Crieria of removal - 1. health = 0, 2. time = 0, 3. pickup new ability
 	}
 }
+
+void AAbilityShield::Boom_Implementation()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
+}
+
+bool AAbilityShield::Boom_Validate() {
+	return true;
+}

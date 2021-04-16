@@ -31,8 +31,6 @@ public:
 	//Nested Multicast Function
 	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, WithValidation, Category = Status)
 	void Calling();
-	void Calling_Implementation();
-	bool Calling_Validate();
 
 	UFUNCTION(Category = Status)
 	virtual void Activate();
@@ -42,6 +40,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Status)
 	Type GetType();
+
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, WithValidation)
+	virtual	void Boom();
+
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)

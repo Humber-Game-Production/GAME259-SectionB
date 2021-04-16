@@ -20,4 +20,5 @@ public:
 	~AAbilityShield();
 
 	virtual void Activate() override;
+	virtual void Boom() override;
 };

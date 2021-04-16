@@ -26,6 +26,14 @@ Type AAbility::GetType()
 	return type;
 }
 
+void AAbility::Boom_Implementation()
+{
+}
+
+bool AAbility::Boom_Validate() {
+	return true;
+}
+
 void AAbility::Calling_Implementation() {
 	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Calling");
 	Activate();

@@ -20,6 +20,7 @@ public:
 
 
 virtual void Activate() override;
+virtual void Boom() override;
 
 private:
 	//Weapons range.
