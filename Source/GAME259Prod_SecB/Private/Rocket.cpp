@@ -13,10 +13,10 @@
 // Sets default values
 ARocket::ARocket()
 {
-
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	SetActorEnableCollision(true);
 
 	//Create Sphere
@@ -40,7 +40,7 @@ ARocket::ARocket()
 	WeaponMesh->SetWorldRotation(FRotator(0.0f, 0.0f, 90.0f));
 	//Change collision type to Projectile
 	WeaponMesh->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel1);
-	WeaponMesh->SetupAttachment(Bounds, "hm");
+	WeaponMesh->SetupAttachment(Bounds,"hm");
 
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComp"));
@@ -51,9 +51,9 @@ ARocket::ARocket()
 	ProjectileMovement->bShouldBounce = false;
 	ProjectileMovement->Velocity.X = 1.0f;
 
-	// set up a notification for when this component overlaps something
+      // set up a notification for when this component overlaps something
 
-  //TODO: find way to pass in parameter to allow for dynamic damage
+	//TODO: find way to pass in parameter to allow for dynamic damage
 	damage = 30.0f;
 
 	//Set Tag.
