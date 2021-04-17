@@ -8,68 +8,46 @@
 #include "DebuffAttack.h"
 #include "DebuffDefense.h"
 #include "DebuffSpeed.h"
-#include "HealOverTime.h"
-#include "../GAME259Prod_SecBCharacter.h"
 
-AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
-	//Set values
-	floatValue = 25.0f; //Heal amount
-	buffTime = 5.0f;
+UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
+	//Set time's here
+	floatValue = 5.0f;
 	debuffTime = 2.0f;
 
 	type = Type::DEFENSIVE;
 
 	//Set image path
-	
-	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Ambrosia_Icon";
-
 }
 
-void AAbilityAmbrosia::ApplyDebuff()
+UAbilityAmbrosia::~UAbilityAmbrosia()
 {
-	//Apply debuffs here
-	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
-	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseDown"));
-	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedDown"));
-
-	deOne->Start(true, debuffTime);
-	deTwo->Start(true, debuffTime);
-	deThree->Start(true, debuffTime);
 }
 
-void AAbilityAmbrosia::Activate_Implementation()
+void UAbilityAmbrosia::Activate()
 {
-	//Heal player
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(floatValue);
-
-	UHealOverTime* heal = NewObject<UHealOverTime>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Healing"));
-
 	//Apply the three Buffs
-	UBuffAttack* buffOne = NewObject<UBuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackUp"));
-	UBuffDefense* buffTwo = NewObject<UBuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseUp"));
-	UBuffSpeed* buffThree = NewObject<UBuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedUp"));
+	UBuffAttack* buffOne = NewObject<UBuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Attack"));
+	UBuffDefense* buffTwo = NewObject<UBuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Defense"));
+	UBuffSpeed* buffThree = NewObject<UBuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Speed"));
 
 	//Apply time
-	buffOne->Start(true, buffTime);
-	buffTwo->Start(true, buffTime);
-	buffThree->Start(true, buffTime);
-	heal->Start(true, 20.0f);
+	buffOne->Start(false, floatValue);
+	buffTwo->Start(false, floatValue);
+	buffThree->Start(false, floatValue);
 
 	//Apply Debuff
 	FTimerHandle Timing;
-	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, 3.0f, false);
+	GetWorld()->GetTimerManager().SetTimer(Timing, this, &UAbilityAmbrosia::ApplyDebuff, 3.0f, false);
 }
 
-bool AAbilityAmbrosia::Activate_Validate()
+void UAbilityAmbrosia::ApplyDebuff()
 {
-	return true;
-}
+	//Apply debuffs here
+	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Attack"));
+	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Defense"));
+	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Speed"));
 
-void AAbilityAmbrosia::Boom_Implementation()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
-}
-
-bool AAbilityAmbrosia::Boom_Validate() {
-	return true;
+	deOne->Start(false, debuffTime);
+	deTwo->Start(false, debuffTime);
+	deThree->Start(false, debuffTime);
 }

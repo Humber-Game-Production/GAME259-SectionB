@@ -10,20 +10,16 @@
  * 
  */
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API AAbilityRocket : public AAbility
+class GAME259PROD_SECB_API UAbilityRocket : public UAbility
 {
 	GENERATED_BODY()
 
 public:
-	AAbilityRocket(const FObjectInitializer& ObjectInitializer);
-	~AAbilityRocket();
+	UAbilityRocket(const FObjectInitializer& ObjectInitializer);
+	~UAbilityRocket();
 
 
-virtual void Activate_Implementation() override;
-virtual bool Activate_Validate() override;
-
-virtual void Boom_Implementation() override;
-virtual bool Boom_Validate() override;
+virtual void Activate() override;
 
 private:
 	//Weapons range.
