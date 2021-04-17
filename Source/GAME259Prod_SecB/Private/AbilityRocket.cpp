@@ -3,21 +3,29 @@
 
 #include "AbilityRocket.h"
 #include "Kismet/GameplayStatics.h"
+#include "../GAME259Prod_SecBCharacter.h"
 #include "Rocket.h"
 
 
 
-UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
+AAbilityRocket::AAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 	type = Type::OFFENSIVE;
     range = 2.0f;
 
+    floatValue = 30.0f; //Damage
+
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RocketShot_Icon";
+
+    bReplicates = true;
+
+    bAlwaysRelevant = true;
 }
 
-UAbilityRocket::~UAbilityRocket() {
+AAbilityRocket::~AAbilityRocket() {
 
 }
 
-void UAbilityRocket::Activate()
+void AAbilityRocket::Activate_Implementation()
 {
     FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true);
     RV_TraceParams.bTraceComplex = true;
@@ -26,9 +34,13 @@ void UAbilityRocket::Activate()
 
     //Re-initialize hit info
     FHitResult RV_Hit(ForceInit);
-    FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
+
+    
+    FTransform trans = GetOwner()->GetTransform();
     FVector startLoc = trans.GetLocation();
     FVector playerForward = trans.GetRotation().GetForwardVector();
+
+    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, startLoc.ToString());
 
     //call GetWorld() from within an actor extending class
     GetWorld()->LineTraceSingleByChannel(
@@ -42,9 +54,22 @@ void UAbilityRocket::Activate()
 
     trans.SetLocation(playerForward * 100 + startLoc);
     FActorSpawnParameters spawnPara;
-    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
     //Spawn Rocket Here.
-    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara);
-    
-	
+    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue * Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetAttackMulti());
+
+}
+
+bool AAbilityRocket::Activate_Validate()
+{
+    return true;
+}
+
+void AAbilityRocket::Boom_Implementation()
+{
+    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
+}
+
+bool AAbilityRocket::Boom_Validate() {
+    return true;
 }

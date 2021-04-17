@@ -20,18 +20,6 @@ public:
 	UEffect();
 	~UEffect();
 
-	/** Call to apply effect
-	isTimed = should the effect be removed after duration has passed?
-
-	duration = if effect is timed how long until it is removed.
-	*/
-	UFUNCTION(BlueprintCallable, Category = "Init")
-	void Start(bool isTimed, float duration_);
-
-	/** Can be called to manualy remove the effect from the character*/
-	UFUNCTION()
-	virtual void Remove();
-
 protected:
 
 	/** The image accociated with the effect*/
@@ -40,14 +28,21 @@ protected:
 	/** File path for the image*/
 	FString imagePath;
 
-	
-private:
 
-	UFUNCTION()
-	virtual void Apply();
+private:
 
 	FTimerHandle Timer;
 
-	//Image here
+public:
+	UFUNCTION(BlueprintCallable, Category = "Init")
+	void Start(bool isTimed, float duration_);
 
+
+	/** Can be called to manualy remove the effect from the character*/
+	UFUNCTION()
+	virtual void Remove();
+
+protected:
+	UFUNCTION()
+	virtual void Apply();
 };
