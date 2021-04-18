@@ -31,7 +31,7 @@ ARocket::ARocket()
 	Bounds->OnComponentHit.AddDynamic(this, &ARocket::OnHit);
 	Bounds->SetNotifyRigidBodyCollision(true);
 
-
+	//Content / ProjectAmulet / Maps / Assets / StaticMesh / Weapons / Bazookarocket_Weapon_SM
 	//Add Static Mesh Here
 	UStaticMeshComponent* WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere")); //Bounds->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
@@ -59,7 +59,7 @@ ARocket::ARocket()
 	//Set Tag.
 	Tags.Add("Rocket");
 
-	bReplicates = true;
+	bReplicates = false;
 
 	//TODO: SetLifeTime Limit?
 }
