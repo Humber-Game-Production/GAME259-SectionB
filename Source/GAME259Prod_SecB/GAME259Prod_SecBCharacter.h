@@ -59,11 +59,11 @@ public:
 
 	/** Used to change player speed. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
-	UAbility* offensiveAbility;
+	AAbility* offensiveAbility;
 
 	/** Used to change player speed. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Ability)
-	UAbility* defensiveAbility;
+	AAbility* defensiveAbility;
 
 
 protected:

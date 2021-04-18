@@ -1,33 +1,32 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Ability.h"
 
-
-UAbility::UAbility()
+AAbility::AAbility()
 {
-	//icon = Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
+    SetReplicates(true);
+}
+
+AAbility::~AAbility()
+{
+}
+
+void AAbility::Activate_Implementation()
+{
 
 }
 
-UAbility::~UAbility()
+bool AAbility::Activate_Validate()
+{
+    return true;
+}
 
 UTexture2D* AAbility::GetIcon()
-
 {
+    return Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
 }
 
-void UAbility::Activate()
+Type AAbility::GetType()
 {
-
-
+    return type;
 }
-
-void UAbility::Calling_Implementation() {
-	Activate();
-}
-
-
-	return type;
-}
-

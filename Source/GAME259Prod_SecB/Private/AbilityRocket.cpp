@@ -3,21 +3,29 @@
 
 #include "AbilityRocket.h"
 #include "Kismet/GameplayStatics.h"
+#include "../GAME259Prod_SecBCharacter.h"
 #include "Rocket.h"
 
 
 
-UAbilityRocket::UAbilityRocket(const FObjectInitializer& ObjectInitializer) {
-	type = Type::OFFENSIVE;
+AAbilityRocket::AAbilityRocket(const FObjectInitializer& ObjectInitializer) {
+    type = Type::OFFENSIVE;
     range = 2.0f;
 
+    floatValue = 30.0f; //Damage
+
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RocketShot_Icon";
+
+    bReplicates = true;
+
+    bAlwaysRelevant = true;
 }
 
-UAbilityRocket::~UAbilityRocket() {
+AAbilityRocket::~AAbilityRocket() {
 
 }
 
-void UAbilityRocket::Activate()
+void AAbilityRocket::Activate_Implementation()
 {
     FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true);
     RV_TraceParams.bTraceComplex = true;
@@ -28,7 +36,6 @@ void UAbilityRocket::Activate()
     FHitResult RV_Hit(ForceInit);
 
     FTransform trans = GetOwner()->GetTransform();
-
     FVector startLoc = trans.GetLocation();
     FVector playerForward = trans.GetRotation().GetForwardVector();
 
@@ -44,18 +51,14 @@ void UAbilityRocket::Activate()
 
     trans.SetLocation(playerForward * 100 + startLoc);
     FActorSpawnParameters spawnPara;
-    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
     //Spawn Rocket Here.
     if (UGameplayStatics::GetPlayerCharacter(GetWorld(), 0) != nullptr) {
         GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue * Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetAttackMulti());
     }
-    
-	
 }
-
 
 bool AAbilityRocket::Activate_Validate()
 {
     return true;
 }
-

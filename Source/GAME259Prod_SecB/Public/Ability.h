@@ -28,7 +28,7 @@ public:
     virtual void Activate();
 
     UFUNCTION(BlueprintCallable, Category = Status)
-    UTexture2D GetIcon();
+    UTexture2D* GetIcon();
 
     UFUNCTION(BlueprintCallable, Category = Status)
     Type GetType();
