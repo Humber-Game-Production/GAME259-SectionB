@@ -31,12 +31,12 @@ ARocket::ARocket()
 	Bounds->OnComponentHit.AddDynamic(this, &ARocket::OnHit);
 	Bounds->SetNotifyRigidBodyCollision(true);
 
-	//Game / ProjectAmulet / Maps / Assets / StaticMesh / Weapons / Bazookarocket_Weapon_SM
+
 	//Add Static Mesh Here
 	UStaticMeshComponent* WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere")); //Bounds->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/ProjectAmulet/Maps/Assets/StaticMesh/Weapons/Bazookarocket_Weapon_SM.Bazookarocket_Weapon_SM'"));
+
 	WeaponMesh->SetStaticMesh(mesh.Object);
-	WeaponMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.4f));
 	WeaponMesh->SetWorldRotation(FRotator(0.0f, 0.0f, 90.0f));
 	//Change collision type to Projectile
 	WeaponMesh->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel1);
