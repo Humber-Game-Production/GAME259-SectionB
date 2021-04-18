@@ -98,13 +98,17 @@ void AGAME259Prod_SecBCharacter::CallOffensiveAbility()
 		ServerCallOffensive();
 	}
 	else {
-		offensiveAbility->Activate();
+		if (offensiveAbility != nullptr) {
+			offensiveAbility->Activate();
+		}
 	}
 }
 
 void AGAME259Prod_SecBCharacter::ServerCallOffensive_Implementation()
 {
-	offensiveAbility->Activate();
+	if (offensiveAbility != nullptr) {
+		offensiveAbility->Activate();
+	}
 }
 
 bool AGAME259Prod_SecBCharacter::ServerCallOffensive_Validate() {
@@ -117,13 +121,17 @@ void AGAME259Prod_SecBCharacter::CallDefensiveAbility()
 		ServerCallDefensive();
 	}
 	else {
-		defensiveAbility->Activate();
+		if (defensiveAbility != nullptr) {
+			defensiveAbility->Activate();
+		}
 	}
 }
 
 void AGAME259Prod_SecBCharacter::ServerCallDefensive_Implementation()
 {
-	defensiveAbility->Activate();
+	if (defensiveAbility != nullptr) {
+		defensiveAbility->Activate();
+	}
 }
 
 bool AGAME259Prod_SecBCharacter::ServerCallDefensive_Validate()
