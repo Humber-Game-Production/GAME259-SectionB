@@ -10,8 +10,6 @@ UShield::UShield() {
 	//check(_rootComponent);
 	//_rootComponent->RegisterComponent();
 
-
-
 }
 
 UShield::UShield(const FObjectInitializer& ObjectInitializer) {
@@ -19,20 +17,18 @@ UShield::UShield(const FObjectInitializer& ObjectInitializer) {
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
 	SetStaticMesh(mesh.Object);
-
-	shieldHealth = 100;
 }
 
 UShield::~UShield() {
-	
-}
 
+}
+//Does this work?
 void UShield::BeginPlay_Implementation()
 {
 	Super::BeginPlay();
 	//Set timer.
-	FTimerHandle Timing;
-	GetWorld()->GetTimerManager().SetTimer(Timing, this, &UShield::EndShield, 3.0f, false);
+	//FTimerHandle Timing;
+	//GetWorld()->GetTimerManager().SetTimer(Timing, this, &UShield::EndShield, 3.0f, false);
 }
 
 void UShield::Damage(float value) {

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "UObject/Object.h"
 #include "Ability.generated.h"
 
 /**
@@ -17,43 +17,34 @@ enum class Type : uint8 {
 };
 
 UCLASS(BlueprintType)
-class GAME259PROD_SECB_API AAbility : public AActor
+class GAME259PROD_SECB_API UAbility : public UObject
 {
 	GENERATED_BODY()
 public:
-	AAbility();
-	~AAbility();
+	UAbility();
+	~UAbility();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+	Type type;
 
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-		float floatValue;
+	float floatValue;
 
-	//Nested Multicast Function
-	UFUNCTION(BlueprintCallable)
-	void Calling();
-
-	UFUNCTION(NetMulticast, Reliable, WithValidation)
-	virtual void Activate();
-
-	UFUNCTION(Server, Reliable, WithValidation)
-	void Server_Activate();
-
-	UFUNCTION(NetMulticast, Reliable, WithValidation)
-	virtual void Boom();
-
-	UFUNCTION(BlueprintCallable, Category = Status)
-	UTexture2D* GetIcon();
-
-	UFUNCTION(BlueprintCallable, Category = Status)
-	Type GetType();
-
-
-
-
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
 	FString imagePath;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
-	Type type;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+	UTexture2D* icon;
+
+	//Nested Multicast Function
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = Status)
+	void Calling();
+
+	UFUNCTION(Category = Status)
+	virtual void Activate();
+
+
+
+
 };
