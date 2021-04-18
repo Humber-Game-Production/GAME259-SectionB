@@ -34,13 +34,10 @@ void AAbilityRocket::Activate_Implementation()
 
     //Re-initialize hit info
     FHitResult RV_Hit(ForceInit);
-
     
     FTransform trans = GetOwner()->GetTransform();
     FVector startLoc = trans.GetLocation();
     FVector playerForward = trans.GetRotation().GetForwardVector();
-
-    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, startLoc.ToString());
 
     //call GetWorld() from within an actor extending class
     GetWorld()->LineTraceSingleByChannel(
@@ -62,14 +59,5 @@ void AAbilityRocket::Activate_Implementation()
 
 bool AAbilityRocket::Activate_Validate()
 {
-    return true;
-}
-
-void AAbilityRocket::Boom_Implementation()
-{
-    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
-}
-
-bool AAbilityRocket::Boom_Validate() {
     return true;
 }

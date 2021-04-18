@@ -83,25 +83,24 @@ void ARocket::Tick(float DeltaTime)
 
 void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "RocketFired");
-	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetName());
+	//UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()
 
-	//Would this method add pawn?
-	TArray<TEnumAsByte<EObjectTypeQuery>> objTypes;
-	objTypes.Add(EObjectTypeQuery::ObjectTypeQuery2);
+	const TArray<AActor*> actorIgnore{  };
 
-	const TArray<AActor*> actorIgnore{ UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn() };
-	TArray<AActor*> componentOut;
+	TSubclassOf<UDamageType> dam;
+
 
 	//Explosion
-	UKismetSystemLibrary::SphereOverlapActors(GetWorld(),
-		GetActorTransform().GetLocation(), //Position
-		300.0f, //Radius
-		objTypes, //Object List
-		AGAME259Prod_SecBCharacter::StaticClass(), //Actor Class Filter
-		actorIgnore, //Actor Ignore
-		componentOut //Actor output
-	);
+	UGameplayStatics::ApplyRadialDamage(GetWorld(), //World instance
+		damage, //Damage Applied
+		GetActorLocation(), //Point Of Explosion
+		300.0f, //Explosion Radius
+		dam, //Damage type info
+		actorIgnore, //Actors to ignore
+		this,
+		nullptr,
+		false,
+		ECollisionChannel::ECC_Visibility);
 
 	DrawDebugSphere(GetWorld(),
 		GetActorTransform().GetLocation(),
@@ -113,25 +112,5 @@ void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrim
 		0,
 		1.0f);
 
-	TSubclassOf<UDamageType> dam;
-
-	for (auto var : componentOut)
-	{
-		if (OtherActor->ActorHasTag("Player")) {
-			UGameplayStatics::ApplyDamage(var->GetOwner(), //DamagedActor
-				damage, //Damage value
-				UGameplayStatics::GetPlayerController(GetWorld(), 0), //DamageInstigator
-				nullptr, //DamageCauser
-				dam);
-		}
-		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, OtherActor->GetName());
-	}
-
 	Destroy();
 }
-
-//void ARocket::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-//{
-
-//}
-

@@ -37,12 +37,3 @@ bool AAbilityWall::Activate_Validate()
 {
     return true;
 }
-
-void AAbilityWall::Boom_Implementation()
-{
-    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
-}
-
-bool AAbilityWall::Boom_Validate() {
-    return true;
-}

@@ -32,13 +32,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-	/** Player Health value. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
-	float health;
-
-	/** Player MaxHealth value. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
-	float maxHealth;
+	/** Take Damage Override*/
+	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
 
 	/** Indicates player is protected. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
@@ -99,6 +94,16 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	void CallOffensiveAbility();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerCallOffensive();
+
+	void CallDefensiveAbility();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerCallDefensive();
 
 	//C++ Getters
 

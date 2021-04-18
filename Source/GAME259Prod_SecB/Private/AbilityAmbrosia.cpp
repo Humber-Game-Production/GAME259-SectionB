@@ -64,12 +64,3 @@ bool AAbilityAmbrosia::Activate_Validate()
 {
 	return true;
 }
-
-void AAbilityAmbrosia::Boom_Implementation()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
-}
-
-bool AAbilityAmbrosia::Boom_Validate() {
-	return true;
-}

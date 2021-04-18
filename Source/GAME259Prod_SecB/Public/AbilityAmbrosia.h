@@ -19,8 +19,6 @@ public:
 
 	virtual void Activate_Implementation() override;
 	virtual bool Activate_Validate() override;
-	virtual void Boom_Implementation() override;
-	virtual bool Boom_Validate() override;
 
 private:
 

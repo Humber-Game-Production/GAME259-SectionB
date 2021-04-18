@@ -26,20 +26,10 @@ public:
 
 	//Can be used by any ability that need a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
-		float floatValue;
-
-	//Nested Multicast Function
-	UFUNCTION(BlueprintCallable)
-	void Calling();
+	float floatValue;
 
 	UFUNCTION(NetMulticast, Reliable, WithValidation)
 	virtual void Activate();
-
-	UFUNCTION(Server, Reliable, WithValidation)
-	void Server_Activate();
-
-	UFUNCTION(NetMulticast, Reliable, WithValidation)
-	virtual void Boom();
 
 	UFUNCTION(BlueprintCallable, Category = Status)
 	UTexture2D* GetIcon();

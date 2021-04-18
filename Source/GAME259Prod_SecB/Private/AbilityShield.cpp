@@ -39,12 +39,3 @@ bool AAbilityShield::Activate_Validate()
 {
 	return true;
 }
-
-void AAbilityShield::Boom_Implementation()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, "Booooooom");
-}
-
-bool AAbilityShield::Boom_Validate() {
-	return true;
-}
