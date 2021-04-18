@@ -59,5 +59,5 @@ void AAbilityRocket::Activate_Implementation()
 
 bool AAbilityRocket::Activate_Validate()
 {
-    return true;
+    return false;
 }
