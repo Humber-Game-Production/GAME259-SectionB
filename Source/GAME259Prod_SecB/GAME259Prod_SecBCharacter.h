@@ -32,6 +32,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+
 	/** Player Health value. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
 	float health;
@@ -47,6 +48,10 @@ public:
 	/** Used to change player speed. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
 	float speedMulti;
+
+	/** Take Damage Override*/
+	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
+
 
 	/** Indicates player is protected. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Stats)
@@ -102,6 +107,40 @@ public:
 	FORCEINLINE class UHorizontalBox* GetEffectBox() const { return effectBox; }
 
 
+	void CallOffensiveAbility();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerCallOffensive();
+
+	void CallDefensiveAbility();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerCallDefensive();
+
+	//C++ Getters
+
+	UFUNCTION()
+	float GetAttackMulti() const;
+
+	UFUNCTION()
+	float GetDefenseMulti() const;
+
+	UFUNCTION()
+	float GetSpeedMulti() const;
+
+	//C++ Setters
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Functions") 
+	void ChangeHealth(float value_);
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeAttackMulti(float value_);
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeDefenseMulti(float value_);
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeSpeedMulti(float value_);
 
 	// Double Jump Mechanic
 	//UFUNCTION()

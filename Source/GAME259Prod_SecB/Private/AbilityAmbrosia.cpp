@@ -42,6 +42,7 @@ void UAbilityAmbrosia::Activate()
 
 void UAbilityAmbrosia::ApplyDebuff()
 {
+
 	//Apply debuffs here
 	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Attack"));
 	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Defense"));
@@ -51,3 +52,7 @@ void UAbilityAmbrosia::ApplyDebuff()
 	deTwo->Start(false, debuffTime);
 	deThree->Start(false, debuffTime);
 }
+
+	return true;
+}
+

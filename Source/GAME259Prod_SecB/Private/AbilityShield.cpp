@@ -38,3 +38,10 @@ void UAbilityShield::Activate()
 		//Crieria of removal - 1. health = 0, 2. time = 0, 3. pickup new ability
 	}
 }
+
+
+bool AAbilityShield::Activate_Validate()
+{
+	return true;
+}
+

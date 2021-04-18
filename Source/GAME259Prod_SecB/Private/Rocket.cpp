@@ -30,10 +30,11 @@ ARocket::ARocket()
 	
 	//Add Static Mesh Here
 	UStaticMeshComponent* WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere")); //Bounds->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
-	//static UStaticMeshComponent* WeaponMesh = FObjectInitializer::CreateDefaultSubobject<UStaticMeshComponent>(Bounds, TEXT("Sphere"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/ProjectAmulet/Maps/Assets/StaticMesh/Weapons/Bazookarocket_Weapon_SM.Bazookarocket_Weapon_SM'"));
+
+
 	WeaponMesh->SetStaticMesh(mesh.Object);
-	WeaponMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.4f));
 	WeaponMesh->SetWorldRotation(FRotator(0.0f, 0.0f, 90.0f));
 	//Change collision type to Projectile
 	WeaponMesh->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel1);
@@ -61,6 +62,15 @@ ARocket::ARocket()
 	//Set Tag.
 	Tags.Add("Rocket");
 
+
+	bReplicates = false;
+
+	//TODO: SetLifeTime Limit?
+}
+
+void ARocket::Initalize(float damage_) {
+	damage = damage_;
+
 }
 
 // Called when the game starts or when spawned
@@ -79,44 +89,36 @@ void ARocket::Tick(float DeltaTime)
 
 void ARocket::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-		//Would this method add pawn?
-		TArray<TEnumAsByte<EObjectTypeQuery>> objTypes;
-		objTypes.Add(EObjectTypeQuery::ObjectTypeQuery2);
 
-		const TArray<AActor*> actorIgnore{ UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn() };
-		TArray<AActor*> actorOut;
+	//UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()
 
-		//Explosion
-		UKismetSystemLibrary::SphereOverlapActors(GetWorld(),
-			GetActorTransform().GetLocation(), //Position
-			300.0f, //Radius
-			objTypes, //Object List
-			AGAME259Prod_SecBCharacter::StaticClass(), //Actor Class Filter
-			actorIgnore, //Actor Ignore
-			actorOut //Actor output
-		);
+	const TArray<AActor*> actorIgnore{  };
 
-		DrawDebugSphere(GetWorld(),
-			GetActorTransform().GetLocation(),
-			300.0f,
-			12,
-			FColor::Red,
-			true,
-			1.0f,
-			0,
-			1.0f);
+	TSubclassOf<UDamageType> dam;
 
-		TSubclassOf<UDamageType> dam;
 
-		for (auto var : actorOut)
-		{
-			if (OtherActor->ActorHasTag("Player")) {
-				UGameplayStatics::ApplyDamage(var, //DamagedActor
-					damage, //Damage value
-					UGameplayStatics::GetPlayerController(GetWorld(), 0), //DamageInstigator
-					nullptr, //DamageCauser
-					dam);
-			}
-		}
+	//Explosion
+	UGameplayStatics::ApplyRadialDamage(GetWorld(), //World instance
+		damage, //Damage Applied
+		GetActorLocation(), //Point Of Explosion
+		300.0f, //Explosion Radius
+		dam, //Damage type info
+		actorIgnore, //Actors to ignore
+		this,
+		nullptr,
+		false,
+		ECollisionChannel::ECC_Visibility);
+
+	DrawDebugSphere(GetWorld(),
+		GetActorTransform().GetLocation(),
+		300.0f,
+		12,
+		FColor::Red,
+		false,
+		1.0f,
+		0,
+		1.0f);
+
+	Destroy();
 }
 

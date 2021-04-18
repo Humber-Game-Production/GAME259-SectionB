@@ -26,7 +26,9 @@ void UAbilityRocket::Activate()
 
     //Re-initialize hit info
     FHitResult RV_Hit(ForceInit);
-    FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
+
+    FTransform trans = GetOwner()->GetTransform();
+
     FVector startLoc = trans.GetLocation();
     FVector playerForward = trans.GetRotation().GetForwardVector();
 
@@ -44,7 +46,16 @@ void UAbilityRocket::Activate()
     FActorSpawnParameters spawnPara;
     spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     //Spawn Rocket Here.
-    GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara);
+    if (UGameplayStatics::GetPlayerCharacter(GetWorld(), 0) != nullptr) {
+        GetWorld()->SpawnActor<ARocket>(ARocket::StaticClass(), trans, spawnPara)->Initalize(floatValue * Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->GetAttackMulti());
+    }
     
 	
 }
+
+
+bool AAbilityRocket::Activate_Validate()
+{
+    return true;
+}
+
