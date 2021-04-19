@@ -56,8 +56,11 @@ AGAME259Prod_SecBCharacter::AGAME259Prod_SecBCharacter()
 	speedMulti = 1.0f;
 
 	isShielded = false;
+}
 
-
+float AGAME259Prod_SecBCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	return Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -82,15 +85,60 @@ void AGAME259Prod_SecBCharacter::SetupPlayerInputComponent(class UInputComponent
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AGAME259Prod_SecBCharacter::LookUpAtRate);
 
-	health = 100;
-	maxHealth = 100;
+
+
+	PlayerInputComponent->BindAction("Offensive", IE_Pressed, this, &AGAME259Prod_SecBCharacter::CallOffensiveAbility);
+	PlayerInputComponent->BindAction("Defensive", IE_Pressed, this, &AGAME259Prod_SecBCharacter::CallDefensiveAbility);
 }
 
 void AGAME259Prod_SecBCharacter::ChangeHealth_Implementation(float value_) {
+}
 
-	health += value_;
-	if (health < 0.0f) { health = 0.0f; }
-	else if (maxHealth < health) { health = maxHealth; }
+void AGAME259Prod_SecBCharacter::CallOffensiveAbility()
+{
+	if (!HasAuthority()) {
+		ServerCallOffensive();
+	}
+	else {
+		if (offensiveAbility != nullptr) {
+			offensiveAbility->Activate();
+		}
+	}
+}
+
+void AGAME259Prod_SecBCharacter::ServerCallOffensive_Implementation()
+{
+	if (offensiveAbility != nullptr) {
+		offensiveAbility->Activate();
+	}
+}
+
+bool AGAME259Prod_SecBCharacter::ServerCallOffensive_Validate() {
+	return true;
+}
+
+void AGAME259Prod_SecBCharacter::CallDefensiveAbility()
+{
+	if (!HasAuthority()) {
+		ServerCallDefensive();
+	}
+	else {
+		if (defensiveAbility != nullptr) {
+			defensiveAbility->Activate();
+		}
+	}
+}
+
+void AGAME259Prod_SecBCharacter::ServerCallDefensive_Implementation()
+{
+	if (defensiveAbility != nullptr) {
+		defensiveAbility->Activate();
+	}
+}
+
+bool AGAME259Prod_SecBCharacter::ServerCallDefensive_Validate()
+{
+	return true;
 }
 
 float AGAME259Prod_SecBCharacter::GetAttackMulti() const
@@ -121,6 +169,7 @@ void AGAME259Prod_SecBCharacter::ChangeDefenseMulti(float value_)
 void AGAME259Prod_SecBCharacter::ChangeSpeedMulti(float value_)
 {
 	speedMulti += value_;
+
 }
 
 // START OF DOUBLE JUMP MECHANIC

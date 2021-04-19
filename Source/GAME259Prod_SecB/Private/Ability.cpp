@@ -2,31 +2,31 @@
 
 #include "Ability.h"
 
-UAbility::UAbility()
+AAbility::AAbility()
+{
+    SetReplicates(true);
+}
+
+AAbility::~AAbility()
+{
+}
+
+void AAbility::Activate_Implementation()
 {
 
 }
 
-UAbility::~UAbility()
+bool AAbility::Activate_Validate()
 {
+    return true;
 }
 
-void UAbility::Activate()
+UTexture2D* AAbility::GetIcon()
 {
-
+    return Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
 }
 
-UTexture2D* UAbility::GetIcon()
+Type AAbility::GetType()
 {
-	return Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *(imagePath)));
+    return type;
 }
-
-Type UAbility::GetType()
-{
-	return type;
-}
-
-void UAbility::Calling_Implementation() {
-	Activate();
-}
-

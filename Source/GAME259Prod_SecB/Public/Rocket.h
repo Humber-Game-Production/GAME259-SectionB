@@ -11,36 +11,36 @@
 UCLASS()
 class GAME259PROD_SECB_API ARocket : public AActor
 {
-	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	ARocket();
+    GENERATED_BODY()
 
-	UFUNCTION()
-	void Initalize(float damage_); //Used to initalize the object.
+public:
+    // Sets default values for this actor's properties
+    ARocket();
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    UFUNCTION()
+        void Initalize(float damage); //Used to initalize the object.
 
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+        // Called every frame
+    virtual void Tick(float DeltaTime) override;
+
+    UFUNCTION()
+        void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
 private:
-	float damage;
+    float damage;
 
-	/** Projectile movement component */
-	UPROPERTY(VisibleAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UProjectileMovementComponent* ProjectileMovement;
+    // Projectile movement component /
+        UPROPERTY(VisibleAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
+        UProjectileMovementComponent* ProjectileMovement;
 
-	/** sphere component */
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	class USphereComponent* Bounds;
+    // sphere component /
+        UPROPERTY(VisibleAnywhere, Category = "Components")
+        class USphereComponent* Bounds;
 
 
 

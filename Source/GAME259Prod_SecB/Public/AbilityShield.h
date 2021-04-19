@@ -9,15 +9,17 @@
 /**
  * 
  */
-UCLASS()
-class GAME259PROD_SECB_API UAbilityShield : public UAbility
+UCLASS(BlueprintType)
+class GAME259PROD_SECB_API AAbilityShield : public AAbility
 {
 	GENERATED_BODY()
 
 public:
 
-	UAbilityShield(const FObjectInitializer& ObjectInitializer);
-	~UAbilityShield();
+	AAbilityShield(const FObjectInitializer& ObjectInitializer);
+	~AAbilityShield();
 
-	virtual void Activate() override;
+	virtual void Activate_Implementation() override;
+	virtual bool Activate_Validate() override;
+
 };

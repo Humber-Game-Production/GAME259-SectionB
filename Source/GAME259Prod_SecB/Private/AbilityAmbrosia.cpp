@@ -11,7 +11,7 @@
 #include "HealOverTime.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
+AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) {
 	//Set values
 	floatValue = 25.0f; //Heal amount
 	buffTime = 5.0f;
@@ -20,17 +20,24 @@ UAbilityAmbrosia::UAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	type = Type::DEFENSIVE;
 
 	//Set image path
-	
+
 	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Ambrosia_Icon";
 
 }
 
-UAbilityAmbrosia::~UAbilityAmbrosia()
+void AAbilityAmbrosia::ApplyDebuff()
 {
-	GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+	//Apply debuffs here
+	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
+	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseDown"));
+	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedDown"));
+
+	deOne->Start(true, debuffTime);
+	deTwo->Start(true, debuffTime);
+	deThree->Start(true, debuffTime);
 }
 
-void UAbilityAmbrosia::Activate()
+void AAbilityAmbrosia::Activate_Implementation()
 {
 	//Heal player
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(floatValue);
@@ -50,17 +57,10 @@ void UAbilityAmbrosia::Activate()
 
 	//Apply Debuff
 	FTimerHandle Timing;
-	GetWorld()->GetTimerManager().SetTimer(Timing, this, &UAbilityAmbrosia::ApplyDebuff, 3.0f, false);
+	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, 3.0f, false);
 }
 
-void UAbilityAmbrosia::ApplyDebuff()
+bool AAbilityAmbrosia::Activate_Validate()
 {
-	//Apply debuffs here
-	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
-	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseDown"));
-	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedDown"));
-
-	deOne->Start(true, debuffTime);
-	deTwo->Start(true, debuffTime);
-	deThree->Start(true, debuffTime);
+	return true;
 }

@@ -10,12 +10,13 @@
  * 
  */
 UCLASS()
-class GAME259PROD_SECB_API UAbilityWall : public UAbility
+class GAME259PROD_SECB_API AAbilityWall : public AAbility
 {
 	GENERATED_BODY()
 	
 public:
-	UAbilityWall();
-	~UAbilityWall();
-	virtual void Activate() override;
+	AAbilityWall();
+	~AAbilityWall();
+	virtual void Activate_Implementation() override;
+	virtual bool Activate_Validate() override;
 };

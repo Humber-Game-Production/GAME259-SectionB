@@ -6,7 +6,7 @@
 #include "../GAME259Prod_SecBCharacter.h"
 #include "Wall.h"
 
-UAbilityWall::UAbilityWall() {
+AAbilityWall::AAbilityWall() {
     //Duration of the ability
     floatValue = 5.0f;
 
@@ -14,11 +14,12 @@ UAbilityWall::UAbilityWall() {
 
     //ImagePath
     imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Force_Field-Wall_Icon";
+    SetReplicates(true);
 }
 
-UAbilityWall::~UAbilityWall() {}
+AAbilityWall::~AAbilityWall() {}
 
-void UAbilityWall::Activate()
+void AAbilityWall::Activate_Implementation()
 {
     FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
     FVector startLoc = trans.GetLocation();
@@ -29,4 +30,10 @@ void UAbilityWall::Activate()
     spawnPara.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
     GetWorld()->SpawnActor<AWall>(AWall::StaticClass(), trans, spawnPara)->SetLifeSpan(floatValue);
+
+}
+
+bool AAbilityWall::Activate_Validate()
+{
+    return true;
 }

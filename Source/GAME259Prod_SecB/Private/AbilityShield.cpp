@@ -5,31 +5,37 @@
 #include "Shield.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
-UAbilityShield::UAbilityShield(const FObjectInitializer& ObjectInitializer) {
-	type = Type::DEFENSIVE;
-	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Shield_Icon";
+AAbilityShield::AAbilityShield(const FObjectInitializer& ObjectInitializer) {
+    type = Type::DEFENSIVE;
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Shield_Icon";
+    SetReplicates(true);
 }
 
-UAbilityShield::~UAbilityShield()
+AAbilityShield::~AAbilityShield()
 {
-	//Content/ThirdPersonCPP/Blueprints/Shield.uasset
+    //Content/ThirdPersonCPP/Blueprints/Shield.uasset
 }
 
-void UAbilityShield::Activate()
+void AAbilityShield::Activate_Implementation()
 {
-	//Internal cool down.
-	if (Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded == false) {
-		//Turn shield on
-		Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded = true;
+    //Internal cool down.
+    if (Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded == false) {
+        //Turn shield on
+        Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded = true;
 
-		UShield* NewComponent = NewObject<UShield>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), UShield::StaticClass(), "Shield");
-		check(NewComponent);
+        UShield* NewComponent = NewObject<UShield>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), UShield::StaticClass(), "Shield");
+        check(NewComponent);
 
-		FAttachmentTransformRules rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, false);
-		NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh()->GetAttachParent(), rules, "Shield");
+        FAttachmentTransformRules rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, false);
+        NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh()->GetAttachParent(), rules, "Shield");
 
-		NewComponent->RegisterComponent();
+        NewComponent->RegisterComponent();
 
-		//Crieria of removal - 1. health = 0, 2. time = 0, 3. pickup new ability
-	}
+        //Crieria of removal - 1. health = 0, 2. time = 0, 3. pickup new ability
+    }
+}
+
+bool AAbilityShield::Activate_Validate()
+{
+    return true;
 }
