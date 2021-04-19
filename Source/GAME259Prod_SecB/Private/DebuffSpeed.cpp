@@ -6,7 +6,7 @@
 
 UDebuffSpeed::UDebuffSpeed()
 {
-
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_speeddown";
 }
 
 UDebuffSpeed::~UDebuffSpeed()

@@ -6,6 +6,7 @@
 
 UBuffDefense::UBuffDefense()
 {
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_defenseup";
 }
 
 UBuffDefense::~UBuffDefense()

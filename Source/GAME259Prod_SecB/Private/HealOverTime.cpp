@@ -2,7 +2,7 @@
 #include "../GAME259Prod_SecBCharacter.h"
 
 UHealOverTime::UHealOverTime() {
-
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Health";
 }
 
 UHealOverTime::~UHealOverTime()

@@ -5,7 +5,7 @@
 
 UDebuffDefense::UDebuffDefense()
 {
-
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_defensedown";
 }
 
 UDebuffDefense::~UDebuffDefense()

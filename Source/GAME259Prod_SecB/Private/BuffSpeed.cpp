@@ -6,6 +6,7 @@
 
 UBuffSpeed::UBuffSpeed()
 {
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_speedup";
 }
 
 UBuffSpeed::~UBuffSpeed()

@@ -5,7 +5,7 @@
 
 UBuffAttack::UBuffAttack()
 {
-
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_attackup";
 }
 
 UBuffAttack::~UBuffAttack()
