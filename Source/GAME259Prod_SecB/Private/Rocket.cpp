@@ -22,7 +22,6 @@ ARocket::ARocket()
 	Bounds->SetSimulatePhysics(true);
 	Bounds->InitSphereRadius(20.0f);
 	Bounds->SetCollisionProfileName(FName("PhysicsActor"), false);
-	//Bounds->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel1);
 	Bounds->IgnoreActorWhenMoving(this, true);
 	Bounds->SetVisibility(true);
 	Bounds->OnComponentHit.AddDynamic(this, &ARocket::OnHit);
@@ -30,7 +29,7 @@ ARocket::ARocket()
 
 
 	//Add Static Mesh Here
-	UStaticMeshComponent* WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere")); //Bounds->CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
+	UStaticMeshComponent* WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere")); 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/ProjectAmulet/Maps/Assets/StaticMesh/Weapons/Bazookarocket_Weapon_SM.Bazookarocket_Weapon_SM'"));
 
 	WeaponMesh->SetStaticMesh(mesh.Object);
@@ -87,8 +86,6 @@ void ARocket::Tick(float DeltaTime)
 
 void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
-
-	//UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()
 
 	const TArray<AActor*> actorIgnore{  };
 

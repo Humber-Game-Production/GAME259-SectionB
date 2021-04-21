@@ -14,7 +14,7 @@ AAbilityRocket::AAbilityRocket(const FObjectInitializer& ObjectInitializer) {
 
     floatValue = 30.0f; //Damage
 
-    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RoketShot_Icon";
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/RocketShot_Icon";
 
     bReplicates = true;
 
