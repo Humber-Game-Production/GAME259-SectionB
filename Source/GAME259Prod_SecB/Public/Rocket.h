@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Components/SphereComponent.h"
+#include "Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
 #include "Rocket.generated.h"
 
 
@@ -35,13 +37,16 @@ private:
     float damage;
 
     // Projectile movement component /
-        UPROPERTY(VisibleAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
-        UProjectileMovementComponent* ProjectileMovement;
+    UPROPERTY(VisibleAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    UProjectileMovementComponent* ProjectileMovement;
 
     // sphere component /
-        UPROPERTY(VisibleAnywhere, Category = "Components")
-        class USphereComponent* Bounds;
+    UPROPERTY(VisibleAnywhere, Category = "Components")
+    USphereComponent* Bounds;
 
+    UParticleSystem* explosionEffect;
+
+    USoundWave* soundEffect;
 
 
 };

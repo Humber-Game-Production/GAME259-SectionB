@@ -6,7 +6,7 @@
 
 UDebuffSpeed::UDebuffSpeed()
 {
-
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/SpeedDown";
 }
 
 UDebuffSpeed::~UDebuffSpeed()
@@ -15,10 +15,12 @@ UDebuffSpeed::~UDebuffSpeed()
 }
 
 void UDebuffSpeed::Apply() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->speedMulti -= 1.0f;
+	UEffect::Apply();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeSpeedMulti(-1.0f);
 }
 
 void UDebuffSpeed::Remove() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->speedMulti += 1.0f;
+	UEffect::Remove();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeSpeedMulti(1.0f);
 }
 
