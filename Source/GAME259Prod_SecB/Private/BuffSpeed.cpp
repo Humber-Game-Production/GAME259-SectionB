@@ -6,7 +6,7 @@
 
 UBuffSpeed::UBuffSpeed()
 {
-	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_speedup";
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/SpeedUp";
 }
 
 UBuffSpeed::~UBuffSpeed()
@@ -15,10 +15,12 @@ UBuffSpeed::~UBuffSpeed()
 
 void UBuffSpeed::Apply()
 {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->speedMulti -= 1.0f;
+	UEffect::Apply();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeSpeedMulti(1.0f);
 }
 void UBuffSpeed::Remove()
 {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->speedMulti += 1.0f;
+	UEffect::Remove();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeSpeedMulti(-1.0f);
 }
 

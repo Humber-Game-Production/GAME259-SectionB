@@ -5,7 +5,7 @@
 
 UDebuffDefense::UDebuffDefense()
 {
-	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_defensedown";
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/DefenseDown";
 }
 
 UDebuffDefense::~UDebuffDefense()
@@ -14,10 +14,12 @@ UDebuffDefense::~UDebuffDefense()
 }
 
 void UDebuffDefense::Apply() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->defenseMulti -= 1.0f;
+	UEffect::Apply();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(-1.0f);
 }
 
 void UDebuffDefense::Remove() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->defenseMulti += 1.0f;
+	UEffect::Remove();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(1.0f);
 }
 

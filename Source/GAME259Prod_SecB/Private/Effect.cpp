@@ -10,7 +10,7 @@ UEffect::UEffect()
 
 UEffect::~UEffect()
 {
-	delete(effectIcon);
+	//delete(effectIcon);
 }
 
 void UEffect::Start(bool isTimed, float duration) {
@@ -36,13 +36,6 @@ void UEffect::Apply() {
 	effectIcon->SetBrush(imageBrush);
 	
 	Cast<AMatchPlayerState>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0)->GetPlayerState())->GetEffectBox()->AddChildToHorizontalBox(effectIcon);
-
-	//UTexture2D texture;
-	//static ConstructorHelpers::FObjectFinder<UTexture2D> texture(TEXT("/Content/StarterContent/Textures/T_Brick_Clay_Beveled_D.uasset"));
-	//image->SetBrushFromTexture(&texture);
-	//widget = widget_;
-
-	//NewObject<>(UGameplayStatics::GetPlayerController(GetWorld(), 0), FName("Attack"));
 }
 
 void UEffect::Remove() {
