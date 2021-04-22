@@ -6,7 +6,7 @@
 
 UBuffDefense::UBuffDefense()
 {
-	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_defenseup";
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/DefenseUp";
 }
 
 UBuffDefense::~UBuffDefense()
@@ -15,12 +15,14 @@ UBuffDefense::~UBuffDefense()
 
 void UBuffDefense::Apply()
 {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->defenseMulti -= 1.0f;
+	UEffect::Apply();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(1.0f);
 }
 
 void UBuffDefense::Remove()
 {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->defenseMulti += 1.0f;
+	UEffect::Remove();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(-1.0f);
 }
 
 

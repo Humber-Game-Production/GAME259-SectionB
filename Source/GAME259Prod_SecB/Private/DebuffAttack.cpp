@@ -6,7 +6,7 @@
 
 UDebuffAttack::UDebuffAttack()
 {
-	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/Ambrosia_attackdown";
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/AttackDown";
 }
 
 UDebuffAttack::~UDebuffAttack()
@@ -14,9 +14,11 @@ UDebuffAttack::~UDebuffAttack()
 }
 
 void UDebuffAttack::Apply() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->attackMulti -= 1.0f;
+	UEffect::Apply();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeAttackMulti(-1.0f);
 }
 
 void UDebuffAttack::Remove() {
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->attackMulti += 1.0f;
+	UEffect::Remove();
+	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeAttackMulti(1.0f);
 }
