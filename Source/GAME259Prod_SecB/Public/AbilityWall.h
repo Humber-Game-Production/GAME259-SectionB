@@ -10,7 +10,7 @@
  * 
  */
 
-class AWall;
+//class AWall;
 
 UCLASS()
 class GAME259PROD_SECB_API AAbilityWall : public AAbility
@@ -29,5 +29,5 @@ public:
 protected:
 	bool release;
 
-	AWall* wall;
+	//AWall* wall;
 };

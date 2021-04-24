@@ -31,7 +31,7 @@ AAbilityWall::~AAbilityWall() {}
 void AAbilityWall::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-
+    /*
     if (release) {
         FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
         FVector startLoc = trans.GetLocation();
@@ -82,12 +82,12 @@ void AAbilityWall::Tick(float DeltaTime)
 
         wall->SetActorRotation(FRotator(wall->GetActorRotation().Roll, wall->GetActorRotation().Pitch, rot.Yaw));
     }
-
+    */
 }
 
 void AAbilityWall::Activate_Implementation()
 {
-
+    /*
     if(!release) {
     FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
     FVector startLoc = trans.GetLocation();
@@ -152,6 +152,7 @@ void AAbilityWall::Activate_Implementation()
 
         release = false;
     }
+    */
 }
 
 bool AAbilityWall::Activate_Validate()
