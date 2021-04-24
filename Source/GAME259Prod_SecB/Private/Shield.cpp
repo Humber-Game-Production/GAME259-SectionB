@@ -17,6 +17,11 @@ UShield::UShield(const FObjectInitializer& ObjectInitializer) {
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
 	SetStaticMesh(mesh.Object);
+
+	static ConstructorHelpers::FObjectFinder<UMaterial> material(TEXT("Material'/Game/ProjectAmulet/Maps/Assets/Materials/Effects/Energy_Shield/M_Shield_001_ARA.M_Shield_001_ARA'"));
+	
+	//UMaterialInterface* mat = material.Object;
+	SetMaterial(0, material.Object);
 }
 
 UShield::~UShield() {
