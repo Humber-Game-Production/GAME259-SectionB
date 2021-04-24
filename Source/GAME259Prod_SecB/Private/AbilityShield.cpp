@@ -28,8 +28,10 @@ void AAbilityShield::Activate_Implementation()
 
     FAttachmentTransformRules rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, false);
     NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh(), rules, "Shield");
-
+    
     NewComponent->RegisterComponent();
+
+    NewComponent->AddRelativeLocation(FVector(0, 0.0f, 50.0f));
 
     remainingTime = cooldownTime;
 }

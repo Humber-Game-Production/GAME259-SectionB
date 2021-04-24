@@ -6,6 +6,9 @@ AAbility::AAbility()
 {
 
     SetReplicates(true);
+
+    SetActorTickEnabled(true);
+    PrimaryActorTick.bCanEverTick = true;
 }
 
 AAbility::~AAbility()
@@ -38,4 +41,9 @@ bool AAbility::CanUse() const
         return false;
     }
     return true;
+}
+
+void AAbility::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
 }

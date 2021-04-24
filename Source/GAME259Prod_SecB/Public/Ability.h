@@ -35,6 +35,9 @@ public:
 
     bool CanUse() const;
 
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
+
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
     FString imagePath;
