@@ -33,6 +33,8 @@ public:
     UFUNCTION(BlueprintCallable, Category = Status)
     Type GetType();
 
+    bool CanUse() const;
+
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
     FString imagePath;
@@ -40,7 +42,7 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
     Type type;
 
-    float coolDownTime;
+    float cooldownTime;
 
     float remainingTime;
 };

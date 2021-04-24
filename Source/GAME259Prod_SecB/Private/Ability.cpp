@@ -31,3 +31,11 @@ Type AAbility::GetType()
 {
     return type;
 }
+
+bool AAbility::CanUse() const
+{
+    if (remainingTime != 0.0f) {
+        return false;
+    }
+    return true;
+}
