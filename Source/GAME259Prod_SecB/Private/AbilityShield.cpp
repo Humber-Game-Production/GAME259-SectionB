@@ -27,7 +27,7 @@ void AAbilityShield::Activate_Implementation()
         check(NewComponent);
 
         FAttachmentTransformRules rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, false);
-        NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh()->GetAttachParent(), rules, "Shield");
+        NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh(), rules, "Shield");
 
         NewComponent->RegisterComponent();
 

@@ -57,7 +57,7 @@ void AAbilityAmbrosia::Activate_Implementation()
 
 	//Apply Debuff
 	FTimerHandle Timing;
-	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, 3.0f, false);
+	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, buffTime, false);
 }
 
 bool AAbilityAmbrosia::Activate_Validate()

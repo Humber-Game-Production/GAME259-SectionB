@@ -27,8 +27,8 @@ void UShield::BeginPlay_Implementation()
 {
 	Super::BeginPlay();
 	//Set timer.
-	//FTimerHandle Timing;
-	//GetWorld()->GetTimerManager().SetTimer(Timing, this, &UShield::EndShield, 3.0f, false);
+	FTimerHandle Timing;
+	GetWorld()->GetTimerManager().SetTimer(Timing, this, &UShield::EndShield, 3.0f, false);
 }
 
 void UShield::Damage(float value) {
@@ -43,4 +43,5 @@ void UShield::EndShield()
 {
 	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded = false;
 	//Destroy Shield 
+	DestroyComponent();
 }
