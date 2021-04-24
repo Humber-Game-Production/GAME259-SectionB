@@ -23,7 +23,7 @@ AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 
 	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Ambrosia_Icon";
 
-	cooldownTime = 5.0f
+	cooldownTime = 5.0f;
 
 }
 
