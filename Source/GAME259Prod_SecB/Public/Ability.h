@@ -39,4 +39,8 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
     Type type;
+
+    float coolDownTime;
+
+    float remainingTime;
 };
