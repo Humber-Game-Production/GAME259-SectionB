@@ -48,8 +48,8 @@ void AAbilityWall::Tick(float DeltaTime)
         //Re-initialize hit info
         FHitResult RV_Hit(ForceInit);
 
-        FTransform trans = GetOwner()->GetTransform();
-        FVector startLoc = trans.GetLocation();
+        trans = GetOwner()->GetTransform();
+        startLoc = trans.GetLocation();
         FVector playerForward = trans.GetRotation().GetForwardVector();
 
         GetWorld()->LineTraceSingleByChannel(RV_Hit, //Hit Result
@@ -120,8 +120,8 @@ void AAbilityWall::Activate_Implementation()
         //Re-initialize hit info
         FHitResult RV_Hit(ForceInit);
 
-        FTransform trans = GetOwner()->GetTransform();
-        FVector startLoc = trans.GetLocation();
+        trans = GetOwner()->GetTransform();
+        startLoc = trans.GetLocation();
         FVector playerForward = trans.GetRotation().GetForwardVector();
 
         GetWorld()->LineTraceSingleByChannel(RV_Hit, //Hit Result
