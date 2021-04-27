@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Ability.h"
-#include "PhysicsEngine/RadialForceComponent.h"
 #include "AbilityForcePush.generated.h"
 
 /**
@@ -22,5 +21,5 @@ public:
 
 private:
 	float range;
-	URadialForceComponent* forceComponent;
+	float force;
 };

@@ -39,6 +39,7 @@ void AAbilityRocket::Activate_Implementation()
     FVector startLoc = trans.GetLocation();
     FVector playerForward = trans.GetRotation().GetForwardVector();
 
+
     //call GetWorld() from within an actor extending class
     GetWorld()->LineTraceSingleByChannel(
         RV_Hit,        //result
@@ -48,6 +49,7 @@ void AAbilityRocket::Activate_Implementation()
         RV_TraceParams
     );
 
+    
 
     trans.SetLocation(playerForward * 100 + startLoc);
     FActorSpawnParameters spawnPara;
