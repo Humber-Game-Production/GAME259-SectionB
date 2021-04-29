@@ -31,7 +31,7 @@ AAbilityWall::~AAbilityWall() {}
 void AAbilityWall::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    /*
+    
     if (release) {
         FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
         FVector startLoc = trans.GetLocation();
@@ -48,8 +48,8 @@ void AAbilityWall::Tick(float DeltaTime)
         //Re-initialize hit info
         FHitResult RV_Hit(ForceInit);
 
-        FTransform trans = GetOwner()->GetTransform();
-        FVector startLoc = trans.GetLocation();
+         trans = GetOwner()->GetTransform();
+         startLoc = trans.GetLocation();
         FVector playerForward = trans.GetRotation().GetForwardVector();
 
         GetWorld()->LineTraceSingleByChannel(RV_Hit, //Hit Result
@@ -58,6 +58,8 @@ void AAbilityWall::Tick(float DeltaTime)
             ECollisionChannel::ECC_Visibility, //Collision Channel
             RV_TraceParams //Trace Parameters
         );
+
+
 
         if (RV_Hit.IsValidBlockingHit()) {
             bool hit = false;
@@ -72,22 +74,33 @@ void AAbilityWall::Tick(float DeltaTime)
 
                 //TODO: Get Material Interface.
                 //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
-
-                wall->SetActorRotation(FRotator(wall->GetActorRotation().Roll, wall->GetActorRotation().Pitch, rot.Yaw));
+                
+                wall->SetActorRotation(FRotator(0.0, 0.0f, rot.Yaw));
+         
             }
         }
+		else
+		{
 
-        //TODO: Get Material Interface.
-        //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
+            FRotator rotatedRot = UKismetMathLibrary::FindLookAtRotation(wallLoc, startLoc);
 
-        wall->SetActorRotation(FRotator(wall->GetActorRotation().Roll, wall->GetActorRotation().Pitch, rot.Yaw));
+			wall->SetActorLocation(wallLoc);
+			wall->SetActorRotation(rotatedRot);
+
+			//TODO: Get Material Interface.
+	    //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
+
+		}
+
+       
+
     }
-    */
+    
 }
 
 void AAbilityWall::Activate_Implementation()
 {
-    /*
+    
     if(!release) {
     FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
     FVector startLoc = trans.GetLocation();
@@ -120,8 +133,8 @@ void AAbilityWall::Activate_Implementation()
         //Re-initialize hit info
         FHitResult RV_Hit(ForceInit);
 
-        FTransform trans = GetOwner()->GetTransform();
-        FVector startLoc = trans.GetLocation();
+         trans = GetOwner()->GetTransform();
+         startLoc = trans.GetLocation();
         FVector playerForward = trans.GetRotation().GetForwardVector();
 
         GetWorld()->LineTraceSingleByChannel(RV_Hit, //Hit Result
@@ -152,7 +165,7 @@ void AAbilityWall::Activate_Implementation()
 
         release = false;
     }
-    */
+    
 }
 
 bool AAbilityWall::Activate_Validate()

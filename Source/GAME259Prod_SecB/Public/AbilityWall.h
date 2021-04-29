@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Ability.h"
+#include "Wall.h"
 #include "AbilityWall.generated.h"
 
 /**
@@ -29,5 +30,5 @@ public:
 protected:
 	bool release;
 
-	//AWall* wall;
+	AWall* wall;
 };
