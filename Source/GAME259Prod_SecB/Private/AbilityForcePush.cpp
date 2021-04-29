@@ -41,19 +41,6 @@ void AAbilityForcePush::Activate_Implementation()
         outActors
     );
 
-    DrawDebugSphere
-    (
-        GetWorld(),
-        trans.GetLocation(),  //Start
-        300.0f,
-        12.0f,
-        FColor::Cyan, //Color
-        true,
-        10.0f,
-        0,
-        2.0f
-    );
-
     for (auto actors : outActors)
     {
         ACharacter* a = Cast<ACharacter>(actors);
