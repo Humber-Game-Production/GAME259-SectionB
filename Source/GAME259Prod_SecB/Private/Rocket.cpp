@@ -16,6 +16,7 @@ ARocket::ARocket()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SetActorEnableCollision(true);
+	//SetActorTickEnabled(true);
 
 	//Create Sphere
 	Bounds = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere1"));
@@ -33,7 +34,7 @@ ARocket::ARocket()
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/ProjectAmulet/Maps/Assets/StaticMesh/Weapons/Bazookarocket_Weapon_SM.Bazookarocket_Weapon_SM'"));
 
 	WeaponMesh->SetStaticMesh(mesh.Object);
-	WeaponMesh->SetWorldRotation(FRotator(0.0f, 0.0f, 90.0f));
+	WeaponMesh->SetWorldRotation(FRotator(90.0f, 0.0f, 0.0f));
 	//Change collision type to Projectile
 	WeaponMesh->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel1);
 	WeaponMesh->SetupAttachment(Bounds, "hm");
@@ -41,11 +42,11 @@ ARocket::ARocket()
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComp"));
 	ProjectileMovement->UpdatedComponent = Bounds;
-	ProjectileMovement->InitialSpeed = 1000.f;
-	ProjectileMovement->MaxSpeed = 1000.0f;
-	ProjectileMovement->bRotationFollowsVelocity = false;
+	ProjectileMovement->InitialSpeed = 2000.f;
+	ProjectileMovement->MaxSpeed = 2000.0f;
+	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = false;
-	ProjectileMovement->Velocity.X = 1.0f;
+	ProjectileMovement->Velocity.X = 2000.0f;
 	ProjectileMovement->ProjectileGravityScale = 0.0f;
 
 	//Set Explosion Effect
@@ -82,6 +83,7 @@ void ARocket::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+
 }
 
 void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
@@ -116,7 +118,7 @@ void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrim
 		GetActorLocation() //Sound Location
 		);
 
-
+	/*
 	DrawDebugSphere(GetWorld(),
 		GetActorTransform().GetLocation(),
 		300.0f,
@@ -126,6 +128,7 @@ void ARocket::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrim
 		1.0f,
 		0,
 		1.0f);
+	*/
 
 	Destroy();
 }

@@ -33,6 +33,11 @@ public:
     UFUNCTION(BlueprintCallable, Category = Status)
     Type GetType();
 
+    bool CanUse() const;
+
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
+
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
     FString imagePath;
@@ -40,7 +45,7 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Status)
     Type type;
 
-    float coolDownTime;
+    float cooldownTime;
 
     float remainingTime;
 };

@@ -23,6 +23,14 @@ AAbilityWall::AAbilityWall() {
     SetActorTickEnabled(true);
     PrimaryActorTick.bCanEverTick = true;
     
+    
+
+	static ConstructorHelpers::FObjectFinder<UMaterial>Red_ShaderMat(TEXT("Material'/Game/StarterContent/Materials/M_Metal_Burnished_Steel.M_Metal_Burnished_Steel'"));
+    Red_ShaderMatInstance = UMaterialInstanceDynamic::Create(Red_ShaderMat.Object, wall);
+
+	static ConstructorHelpers::FObjectFinder<UMaterial>Green_ShaderMat(TEXT("Material'/Game/StarterContent/Materials/M_Metal_Burnished_Steel.M_Metal_Burnished_Steel'"));
+	Green_ShaderMatInstance = UMaterialInstanceDynamic::Create(Green_ShaderMat.Object, wall);
+
 }
 
 AAbilityWall::~AAbilityWall() {}
@@ -31,7 +39,7 @@ AAbilityWall::~AAbilityWall() {}
 void AAbilityWall::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-
+    
     if (release) {
         FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
         FVector startLoc = trans.GetLocation();
@@ -48,8 +56,8 @@ void AAbilityWall::Tick(float DeltaTime)
         //Re-initialize hit info
         FHitResult RV_Hit(ForceInit);
 
-        trans = GetOwner()->GetTransform();
-        startLoc = trans.GetLocation();
+         trans = GetOwner()->GetTransform();
+         startLoc = trans.GetLocation();
         FVector playerForward = trans.GetRotation().GetForwardVector();
 
         GetWorld()->LineTraceSingleByChannel(RV_Hit, //Hit Result
@@ -58,6 +66,8 @@ void AAbilityWall::Tick(float DeltaTime)
             ECollisionChannel::ECC_Visibility, //Collision Channel
             RV_TraceParams //Trace Parameters
         );
+
+        
 
         if (RV_Hit.IsValidBlockingHit()) {
             bool hit = false;
@@ -71,23 +81,32 @@ void AAbilityWall::Tick(float DeltaTime)
                 wall->SetActorLocation(RV_Hit.ImpactPoint);
 
                 //TODO: Get Material Interface.
-                //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
 
-                wall->SetActorRotation(FRotator(wall->GetActorRotation().Roll, wall->GetActorRotation().Pitch, rot.Yaw));
+                wall->SetWallMaterial(Red_ShaderMatInstance);
             }
         }
+		else
+		{            
+           
+		wall->SetActorLocation(wallLoc);
+		wall->SetActorRotation(GetOwner()->GetActorRotation());
+        wall->SetActorRotation(wall->GetActorRotation().Add(0, 90, 0));
 
-        //TODO: Get Material Interface.
-        //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
+        
 
-        wall->SetActorRotation(FRotator(wall->GetActorRotation().Roll, wall->GetActorRotation().Pitch, rot.Yaw));
+		wall->SetWallMaterial(Green_ShaderMatInstance);
+
+		}
+
+       
+
     }
-
+    
 }
 
 void AAbilityWall::Activate_Implementation()
 {
-
+    
     if(!release) {
     FTransform trans = UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetActorTransform();
     FVector startLoc = trans.GetLocation();
@@ -120,8 +139,8 @@ void AAbilityWall::Activate_Implementation()
         //Re-initialize hit info
         FHitResult RV_Hit(ForceInit);
 
-        trans = GetOwner()->GetTransform();
-        startLoc = trans.GetLocation();
+         trans = GetOwner()->GetTransform();
+         startLoc = trans.GetLocation();
         FVector playerForward = trans.GetRotation().GetForwardVector();
 
         GetWorld()->LineTraceSingleByChannel(RV_Hit, //Hit Result
@@ -152,6 +171,7 @@ void AAbilityWall::Activate_Implementation()
 
         release = false;
     }
+    
 }
 
 bool AAbilityWall::Activate_Validate()

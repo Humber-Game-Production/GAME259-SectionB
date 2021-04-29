@@ -4,13 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "Ability.h"
+#include "Wall.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "AbilityWall.generated.h"
 
 /**
  * 
  */
 
-class AWall;
+//class AWall;
 
 UCLASS()
 class GAME259PROD_SECB_API AAbilityWall : public AAbility
@@ -30,4 +32,8 @@ protected:
 	bool release;
 
 	AWall* wall;
+
+	UMaterialInstanceDynamic* Red_ShaderMatInstance;
+	UMaterialInstanceDynamic* Green_ShaderMatInstance;
+
 };
