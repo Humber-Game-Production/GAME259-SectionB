@@ -12,7 +12,7 @@ AWall::AWall()
 
 	 wallMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
 	
-	 static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/ProjectAmulet/Maps/Assets/StaticMesh/Weapons/Deployable_Shield_SM.Deployable_Shield_SM'"));
+	 static ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/ProjectAmulet/Maps/Assets/StaticMesh/Weapons/DWC_Deployable_Shield.DWC_Deployable_Shield'"));
 
 	 wallMesh->SetStaticMesh(mesh.Object);
 
