@@ -13,7 +13,7 @@ AAbilityWall::AAbilityWall() {
     type = Type::DEFENSIVE;
 
     //ImagePath
-    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Force_Field-Wall_Icon";
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Force_Field-Wall_Icon-1";
     SetReplicates(true);
 }
 

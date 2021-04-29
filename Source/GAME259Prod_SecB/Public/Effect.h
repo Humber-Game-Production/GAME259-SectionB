@@ -33,6 +33,8 @@ public:
 	virtual void Remove();
 
 protected:
+	UFUNCTION()
+	virtual void Apply();
 
 	/** The image accociated with the effect*/
 	UImage* effectIcon;
@@ -43,8 +45,7 @@ protected:
 	
 private:
 
-	UFUNCTION()
-	virtual void Apply();
+
 
 	FTimerHandle Timer;
 
