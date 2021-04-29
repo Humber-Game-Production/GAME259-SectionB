@@ -82,10 +82,16 @@ void AAbilityWall::Tick(float DeltaTime)
 		else
 		{
 
-            FRotator rotatedRot = UKismetMathLibrary::FindLookAtRotation(wallLoc, startLoc);
-
+            FRotator rotatedRot = UKismetMathLibrary::FindLookAtRotation(startLoc, wallLoc);
+            
+           
 			wall->SetActorLocation(wallLoc);
-			wall->SetActorRotation(rotatedRot);
+           // wall->Set(0, 0, );
+            
+            
+
+		wall->SetActorRotation(GetOwner()->GetActorRotation());
+        wall->SetActorRotation(wall->GetActorRotation().Add(0, 90, 0));
 
 			//TODO: Get Material Interface.
 	    //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
