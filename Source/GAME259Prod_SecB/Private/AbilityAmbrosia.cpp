@@ -25,7 +25,6 @@ AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	cooldownTime = 5.0f;
 
 }
-
 void AAbilityAmbrosia::ApplyDebuff()
 {
 	//Apply debuffs here
