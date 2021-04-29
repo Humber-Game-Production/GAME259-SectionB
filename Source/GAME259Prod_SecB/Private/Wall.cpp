@@ -39,3 +39,8 @@ void AWall::Tick(float DeltaTime)
 
 }
 
+void AWall::SetWallMaterial(UMaterialInstanceDynamic* mat)
+{
+	wallMesh->SetMaterial(0,mat);
+}
+

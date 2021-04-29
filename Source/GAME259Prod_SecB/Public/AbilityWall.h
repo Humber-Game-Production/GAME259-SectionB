@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Ability.h"
 #include "Wall.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "AbilityWall.generated.h"
 
 /**
@@ -31,4 +32,8 @@ protected:
 	bool release;
 
 	AWall* wall;
+
+	UMaterialInstanceDynamic* Red_ShaderMatInstance;
+	UMaterialInstanceDynamic* Green_ShaderMatInstance;
+
 };

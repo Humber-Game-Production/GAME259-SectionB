@@ -23,6 +23,14 @@ AAbilityWall::AAbilityWall() {
     SetActorTickEnabled(true);
     PrimaryActorTick.bCanEverTick = true;
     
+    
+
+	static ConstructorHelpers::FObjectFinder<UMaterial>Red_ShaderMat(TEXT("Material'/Game/StarterContent/Materials/M_Metal_Burnished_Steel.M_Metal_Burnished_Steel'"));
+    Red_ShaderMatInstance = UMaterialInstanceDynamic::Create(Red_ShaderMat.Object, wall);
+
+	static ConstructorHelpers::FObjectFinder<UMaterial>Green_ShaderMat(TEXT("Material'/Game/StarterContent/Materials/M_Metal_Burnished_Steel.M_Metal_Burnished_Steel'"));
+	Green_ShaderMatInstance = UMaterialInstanceDynamic::Create(Green_ShaderMat.Object, wall);
+
 }
 
 AAbilityWall::~AAbilityWall() {}
@@ -59,7 +67,7 @@ void AAbilityWall::Tick(float DeltaTime)
             RV_TraceParams //Trace Parameters
         );
 
-
+        
 
         if (RV_Hit.IsValidBlockingHit()) {
             bool hit = false;
@@ -73,28 +81,20 @@ void AAbilityWall::Tick(float DeltaTime)
                 wall->SetActorLocation(RV_Hit.ImpactPoint);
 
                 //TODO: Get Material Interface.
-                //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
-                
-                wall->SetActorRotation(FRotator(0.0, 0.0f, rot.Yaw));
-         
+
+                wall->SetWallMaterial(Red_ShaderMatInstance);
             }
         }
 		else
-		{
-
-            FRotator rotatedRot = UKismetMathLibrary::FindLookAtRotation(startLoc, wallLoc);
-            
+		{            
            
-			wall->SetActorLocation(wallLoc);
-           // wall->Set(0, 0, );
-            
-            
-
+		wall->SetActorLocation(wallLoc);
 		wall->SetActorRotation(GetOwner()->GetActorRotation());
         wall->SetActorRotation(wall->GetActorRotation().Add(0, 90, 0));
 
-			//TODO: Get Material Interface.
-	    //Cast<UStaticMeshComponent>(wall->GetComponentByClass(UStaticMeshComponent::StaticClass()))->SetMaterial(0,;
+        
+
+		wall->SetWallMaterial(Green_ShaderMatInstance);
 
 		}
 

@@ -15,12 +15,13 @@ public:
 	// Sets default values for this actor's properties
 	AWall();
 
+	UStaticMeshComponent* wallMesh;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 
-	UStaticMeshComponent* wallMesh;
+	
 
 private:
 
@@ -30,5 +31,7 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	void SetWallMaterial(UMaterialInstanceDynamic* mat);
 
 };
