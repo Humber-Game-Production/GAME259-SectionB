@@ -20,7 +20,6 @@ AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	type = Type::DEFENSIVE;
 
 	//Set image path
-
 	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Ambrosia_Icon";
 
 	cooldownTime = 5.0f;
