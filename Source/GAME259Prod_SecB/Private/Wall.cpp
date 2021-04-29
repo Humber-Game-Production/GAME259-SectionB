@@ -27,6 +27,7 @@ void AWall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	
 
 }
 
