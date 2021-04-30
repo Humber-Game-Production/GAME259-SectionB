@@ -1,4 +1,5 @@
 #include "../Public/HealOverTime.h"
+#include "UObject/UObjectBase.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
 UHealOverTime::UHealOverTime() {
@@ -18,7 +19,8 @@ void UHealOverTime::Apply()
 
 void UHealOverTime::TickEffect() {
 	//Heal player
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(1.0f);
+
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeHealth(1.0f);
 }
 
 void UHealOverTime::Remove()
