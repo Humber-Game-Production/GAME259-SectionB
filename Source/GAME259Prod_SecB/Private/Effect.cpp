@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "Effect.h"
+#include "GameFramework/Character.h"
 #include "MatchPlayerState.h"
 
 
@@ -34,8 +35,7 @@ void UEffect::Apply() {
 	effectIcon = NewObject<UImage>();
 
 	effectIcon->SetBrush(imageBrush);
-	
-	Cast<AMatchPlayerState>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0)->GetPlayerState())->GetEffectBox()->AddChildToHorizontalBox(effectIcon);
+	Cast<AMatchPlayerState>(Cast<ACharacter>(GetOuter())->GetPlayerState())->GetEffectBox()->AddChildToHorizontalBox(effectIcon);
 }
 
 void UEffect::Remove() {

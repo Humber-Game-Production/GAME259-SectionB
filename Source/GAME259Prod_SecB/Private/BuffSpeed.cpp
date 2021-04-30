@@ -17,11 +17,11 @@ UBuffSpeed::~UBuffSpeed()
 void UBuffSpeed::Apply()
 {
 	UEffect::Apply();
-	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeSpeedMulti(20.0f);
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeSpeedMulti(2.0f);
 }
 void UBuffSpeed::Remove()
 {
 	UEffect::Remove();
-	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeSpeedMulti(1.0f / 20.0f);
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeSpeedMulti(0.5f);
 }
 

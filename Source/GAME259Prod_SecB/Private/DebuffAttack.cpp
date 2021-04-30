@@ -15,10 +15,10 @@ UDebuffAttack::~UDebuffAttack()
 
 void UDebuffAttack::Apply() {
 	UEffect::Apply();
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeAttackMulti(-1.0f);
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeAttackMulti(-0.3f);
 }
 
 void UDebuffAttack::Remove() {
 	UEffect::Remove();
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeAttackMulti(1.0f);
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeAttackMulti(0.3f);
 }

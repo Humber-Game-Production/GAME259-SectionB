@@ -15,11 +15,11 @@ UDebuffDefense::~UDebuffDefense()
 
 void UDebuffDefense::Apply() {
 	UEffect::Apply();
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(-1.0f);
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeDefenseMulti(-0.3f);
 }
 
 void UDebuffDefense::Remove() {
 	UEffect::Remove();
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeDefenseMulti(1.0f);
+	Cast<AGAME259Prod_SecBCharacter>(GetOuter())->ChangeDefenseMulti(0.3f);
 }
 
