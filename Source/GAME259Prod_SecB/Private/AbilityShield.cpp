@@ -8,7 +8,10 @@
 AAbilityShield::AAbilityShield(const FObjectInitializer& ObjectInitializer) {
     type = Type::DEFENSIVE;
     imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Shield_Icon";
-    SetReplicates(true);
+
+
+    bReplicates = true;
+    bAlwaysRelevant = true;
 
     cooldownTime = 5.0f;
 }
@@ -21,13 +24,13 @@ AAbilityShield::~AAbilityShield()
 void AAbilityShield::Activate_Implementation()
 {
     //Turn shield on
-    Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->isShielded = true;
+    Cast<AGAME259Prod_SecBCharacter>(GetOwner())->isShielded = true;
 
-    UShield* NewComponent = NewObject<UShield>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), UShield::StaticClass(), "Shield");
+    UShield* NewComponent = NewObject<UShield>(GetOwner(), UShield::StaticClass(), "Shield");
     check(NewComponent);
 
     FAttachmentTransformRules rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, false);
-    NewComponent->AttachToComponent(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetMesh(), rules, "Shield");
+    NewComponent->AttachToComponent(Cast<ACharacter>(GetOwner())->GetMesh(), rules, "Shield");
     
     NewComponent->RegisterComponent();
 
