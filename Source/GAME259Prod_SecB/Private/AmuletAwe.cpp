@@ -7,7 +7,7 @@
 
 UAmuletAwe::UAmuletAwe()
 {
-	imagePath = Texture2D'/Game/ProjectAmulet/Art/EffectIcons/AmuletAwe';
+	imagePath = "/Game/ProjectAmulet/Art/EffectIcons/AmuletAwe";
 }
 
 UAmuletAwe::~UAmuletAwe()
