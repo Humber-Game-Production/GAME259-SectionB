@@ -18,13 +18,13 @@ AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 	debuffTime = 2.0f;
 
 	type = Type::DEFENSIVE;
-
+	
 	//Set image path
-
 	imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/Ambrosia_Icon";
 
-}
+	cooldownTime = 5.0f;
 
+}
 void AAbilityAmbrosia::ApplyDebuff()
 {
 	//Apply debuffs here
@@ -57,10 +57,19 @@ void AAbilityAmbrosia::Activate_Implementation()
 
 	//Apply Debuff
 	FTimerHandle Timing;
-	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, 3.0f, false);
+	GetWorld()->GetTimerManager().SetTimer(Timing, this, &AAbilityAmbrosia::ApplyDebuff, buffTime, false);
+
+	remainingTime = cooldownTime;
 }
 
 bool AAbilityAmbrosia::Activate_Validate()
 {
 	return true;
+}
+
+void AAbilityAmbrosia::Tick(float DeltaTime)
+{
+	if (remainingTime > 0.0f) {
+		remainingTime -= DeltaTime;
+	}
 }

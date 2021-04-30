@@ -4,11 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "Ability.h"
+#include "Wall.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "AbilityWall.generated.h"
 
 /**
  * 
  */
+
+//class AWall;
+
 UCLASS()
 class GAME259PROD_SECB_API AAbilityWall : public AAbility
 {
@@ -19,4 +24,16 @@ public:
 	~AAbilityWall();
 	virtual void Activate_Implementation() override;
 	virtual bool Activate_Validate() override;
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+protected:
+	bool release;
+
+	AWall* wall;
+
+	UMaterialInstanceDynamic* Red_ShaderMatInstance;
+	UMaterialInstanceDynamic* Green_ShaderMatInstance;
+
 };

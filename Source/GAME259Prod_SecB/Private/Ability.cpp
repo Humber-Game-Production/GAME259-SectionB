@@ -4,7 +4,11 @@
 
 AAbility::AAbility()
 {
+
     SetReplicates(true);
+
+    SetActorTickEnabled(true);
+    PrimaryActorTick.bCanEverTick = true;
 }
 
 AAbility::~AAbility()
@@ -29,4 +33,17 @@ UTexture2D* AAbility::GetIcon()
 Type AAbility::GetType()
 {
     return type;
+}
+
+bool AAbility::CanUse() const
+{
+    if (remainingTime > 0.0f) {
+        return false;
+    }
+    return true;
+}
+
+void AAbility::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
 }

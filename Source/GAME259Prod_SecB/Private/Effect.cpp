@@ -23,9 +23,9 @@ void UEffect::Start(bool isTimed, float duration) {
 }
 
 void UEffect::Apply() {
-	//icon should be replaced by the TSoftObjectPtr<UTexture2D> / or what else can be used to get the image
+
 	FSlateBrush imageBrush{};
-	imageBrush.ImageSize = FVector2D{ 6.0f,6.0f };
+	imageBrush.ImageSize = FVector2D{ 50.0f, 50.0f };
 
 	
 	//Insert texture link.

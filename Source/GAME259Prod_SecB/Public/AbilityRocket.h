@@ -23,6 +23,8 @@ public:
 virtual void Activate_Implementation() override;
 virtual bool Activate_Validate() override;
 
+// Called every frame
+virtual void Tick(float DeltaTime) override;
 
 private:
 	//Weapons range.

@@ -101,7 +101,9 @@ void AGAME259Prod_SecBCharacter::CallOffensiveAbility()
 	}
 	else {
 		if (offensiveAbility != nullptr) {
-			offensiveAbility->Activate();
+			if (offensiveAbility->CanUse()) {
+				offensiveAbility->Activate();
+			}
 		}
 	}
 }
@@ -109,7 +111,9 @@ void AGAME259Prod_SecBCharacter::CallOffensiveAbility()
 void AGAME259Prod_SecBCharacter::ServerCallOffensive_Implementation()
 {
 	if (offensiveAbility != nullptr) {
-		offensiveAbility->Activate();
+		if (offensiveAbility->CanUse()) {
+			offensiveAbility->Activate();
+		}
 	}
 }
 
@@ -124,7 +128,9 @@ void AGAME259Prod_SecBCharacter::CallDefensiveAbility()
 	}
 	else {
 		if (defensiveAbility != nullptr) {
-			defensiveAbility->Activate();
+			if (defensiveAbility->CanUse()) {
+				defensiveAbility->Activate();
+			}
 		}
 	}
 }
@@ -132,7 +138,9 @@ void AGAME259Prod_SecBCharacter::CallDefensiveAbility()
 void AGAME259Prod_SecBCharacter::ServerCallDefensive_Implementation()
 {
 	if (defensiveAbility != nullptr) {
-		defensiveAbility->Activate();
+		if (defensiveAbility->CanUse()) {
+			defensiveAbility->Activate();
+		}
 	}
 }
 
