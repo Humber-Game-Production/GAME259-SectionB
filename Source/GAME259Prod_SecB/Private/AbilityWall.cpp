@@ -79,10 +79,10 @@ void AAbilityWall::Tick(float DeltaTime)
 
             if (hit) {
                 wall->SetActorLocation(RV_Hit.ImpactPoint);
-
-                //TODO: Get Material Interface.
-
-                wall->SetWallMaterial(Red_ShaderMatInstance);
+                wall->SetActorRotation(GetOwner()->GetActorRotation());
+                wall->SetActorRotation(wall->GetActorRotation().Add(0, 90, 0));
+                
+                wall->SetWallMaterial(Green_ShaderMatInstance);
             }
         }
 		else
@@ -94,7 +94,7 @@ void AAbilityWall::Tick(float DeltaTime)
 
         
 
-		wall->SetWallMaterial(Green_ShaderMatInstance);
+		wall->SetWallMaterial(Red_ShaderMatInstance);
 
 		}
 
@@ -160,8 +160,9 @@ void AAbilityWall::Activate_Implementation()
 
             if (hit) {
                 wall->SetActorLocation(RV_Hit.ImpactPoint);
-
-                wall->SetActorRotation(FRotator(wall->GetActorRotation().Roll, wall->GetActorRotation().Pitch, rot.Yaw));
+                wall->SetActorRotation(GetOwner()->GetActorRotation());
+                wall->SetActorRotation(wall->GetActorRotation().Add(0, 90, 0));
+               
                 wall->SetLifeSpan(floatValue);
             }
             else {
