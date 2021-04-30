@@ -1,5 +1,4 @@
 #include "../Public/HealOverTime.h"
-#include "UObject/UObjectBase.h"
 #include "../GAME259Prod_SecBCharacter.h"
 
 UHealOverTime::UHealOverTime() {

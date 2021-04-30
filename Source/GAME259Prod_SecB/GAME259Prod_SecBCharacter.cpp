@@ -177,6 +177,7 @@ void AGAME259Prod_SecBCharacter::ChangeDefenseMulti(float value_)
 void AGAME259Prod_SecBCharacter::ChangeSpeedMulti(float value_)
 {
 	speedMulti += value_;
+	GetCharacterMovement()->MaxWalkSpeed *= value_;
 
 }
 
