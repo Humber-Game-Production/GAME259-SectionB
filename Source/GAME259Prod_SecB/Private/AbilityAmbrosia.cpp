@@ -28,9 +28,9 @@ AAbilityAmbrosia::AAbilityAmbrosia(const FObjectInitializer& ObjectInitializer) 
 void AAbilityAmbrosia::ApplyDebuff()
 {
 	//Apply debuffs here
-	UDebuffAttack* deOne = NewObject<UDebuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackDown"));
-	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseDown"));
-	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedDown"));
+	UDebuffAttack* deOne = NewObject<UDebuffAttack>(GetOwner(), TEXT("AttackDown"));
+	UDebuffDefense* deTwo = NewObject<UDebuffDefense>(GetOwner(), TEXT("DefenseDown"));
+	UDebuffSpeed* deThree = NewObject<UDebuffSpeed>(GetOwner(), TEXT("SpeedDown"));
 
 	deOne->Start(true, debuffTime);
 	deTwo->Start(true, debuffTime);
@@ -40,14 +40,14 @@ void AAbilityAmbrosia::ApplyDebuff()
 void AAbilityAmbrosia::Activate_Implementation()
 {
 	//Heal player
-	Cast<AGAME259Prod_SecBCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->ChangeHealth(floatValue);
+	Cast<AGAME259Prod_SecBCharacter>(GetOwner())->ChangeHealth(floatValue);
 
-	UHealOverTime* heal = NewObject<UHealOverTime>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("Healing"));
+	UHealOverTime* heal = NewObject<UHealOverTime>(GetOwner(), TEXT("Healing"));
 
 	//Apply the three Buffs
-	UBuffAttack* buffOne = NewObject<UBuffAttack>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("AttackUp"));
-	UBuffDefense* buffTwo = NewObject<UBuffDefense>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("DefenseUp"));
-	UBuffSpeed* buffThree = NewObject<UBuffSpeed>(UGameplayStatics::GetPlayerController(GetWorld(), 0), TEXT("SpeedUp"));
+	UBuffAttack* buffOne = NewObject<UBuffAttack>(GetOwner(), TEXT("AttackUp"));
+	UBuffDefense* buffTwo = NewObject<UBuffDefense>(GetOwner(), TEXT("DefenseUp"));
+	UBuffSpeed* buffThree = NewObject<UBuffSpeed>(GetOwner(), TEXT("SpeedUp"));
 
 	//Apply time
 	buffOne->Start(true, buffTime);

@@ -12,6 +12,8 @@ AAbilityForcePush::AAbilityForcePush()
     type = Type::OFFENSIVE;
     range = 2.0f;
 
+    imagePath = "/Game/ProjectAmulet/Art/AbilityIcons/PushBack_Icon";
+
     //Force of the pushback
     force = 100.0f;
 }
@@ -43,16 +45,14 @@ void AAbilityForcePush::Activate_Implementation()
 
     for (auto actors : outActors)
     {
-        ACharacter* a = Cast<ACharacter>(actors);
+        ACharacter* actor = Cast<ACharacter>(actors);
 
         FRotator rot = UKismetMathLibrary::FindLookAtRotation(startLoc, actors->GetActorLocation());
         FVector vec = rot.Vector();
         vec.Normalize();
         vec *= force;
 
-
-
-        a->LaunchCharacter(FVector(vec.X, vec.Y, 0.0f), false, false);
+        actor->LaunchCharacter(FVector(vec.X, vec.Y, 0.0f), false, false);
     }
 
     

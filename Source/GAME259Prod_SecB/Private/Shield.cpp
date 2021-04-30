@@ -22,11 +22,14 @@ UShield::UShield(const FObjectInitializer& ObjectInitializer) {
 	
 	//UMaterialInterface* mat = material.Object;
 	SetMaterial(0, material.Object);
+
+	
 }
 
 UShield::~UShield() {
 
 }
+
 //Does this work?
 void UShield::BeginPlay_Implementation()
 {
