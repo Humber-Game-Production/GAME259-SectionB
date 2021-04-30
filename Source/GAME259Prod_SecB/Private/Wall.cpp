@@ -23,7 +23,7 @@ AWall::AWall()
 void AWall::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SetLifeSpan(5.0f);
 }
 
 void AWall::Initialize()
