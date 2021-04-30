@@ -25,7 +25,7 @@ void UEffect::Start(bool isTimed, float duration) {
 void UEffect::Apply() {
 
 	FSlateBrush imageBrush{};
-	imageBrush.ImageSize = FVector2D{ 100.0f, 100.0f };
+	imageBrush.ImageSize = FVector2D{ 50.0f, 50.0f };
 
 	
 	//Insert texture link.
